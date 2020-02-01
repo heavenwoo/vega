@@ -1,0 +1,9 @@
+{% extends "global/layout.html.twig" %}
+
+{% block body %}
+    <h1 class="text-danger">{{ 'answer.answer_error' | trans }}</h1>
+
+    <div class="well">
+        {{ include("global/_answer_form.html.twig") }}
+    </div>
+{% endblock %}

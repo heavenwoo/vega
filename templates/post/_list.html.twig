@@ -1,0 +1,25 @@
+{% for post in posts %}
+    <section class="question-summary horizontal">
+        <div class="summary">
+            <h3>
+                <a href="{{ path('post_show', {id: post.id, slug: post.slug}) }}"
+                   class="subject">{{ post.subject }}</a>
+            </h3>
+            {% if tags_list is defined %}
+                <div class="tag-list">
+                    {% for tag in post.tags %}
+                        <a class="btn btn-light"
+                           href="{{ path('tag_post_list', {name: tag.name}) }}">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="started">
+                <a href="#">{{ post.user.username }}</a>
+                posted on
+                <time class="started-date" datetime="{{ post.createdAt | date('c') }}">
+                    {{ post.createdAt | ago }}
+                </time>
+            </div>
+        </div>
+    </section>
+{% endfor %}

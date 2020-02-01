@@ -1,0 +1,41 @@
+{% for question in questions %}
+    <section class="question-summary horizontal">
+        <div class="cp">
+            <div class="status vote">
+                <div class="mini-counts">{{ question.votes | nice_number }}</div>
+                <small>{% if question.votes > 1 %}votes{% else %}vote{% endif %}</small>
+            </div>
+            <div class="status{% if question.isSolved %} answered-accepted{% elseif question.isSolved == false and question.getAnswerNums != 0 %} answered{% else %} unanswered{% endif %}">
+                <div class="mini-counts">{{ question.answers | length }}</div>
+                <small>{% if question.answers|length > 1 %}answers{% else %}answer{% endif %}</small>
+            </div>
+            <div class="status view">
+                <div class="mini-counts" data-toggle="tooltip" data-placement="bottom"
+                     title="{{ question.views | number_format }} {% if question.views > 1 %}views{% else %}view{% endif %}">
+                    {{ question.views | nice_number }}
+                </div>
+                <small>{% if question.views > 1 %}views{% else %}view{% endif %}</small>
+            </div>
+        </div>
+        <div class="summary">
+            <h3>
+                <a href="{{ path('question_show', {id: question.id, slug: question.slug}) }}"
+                   class="subject">{{ question.subject }}</a>
+            </h3>
+            {% if tags_list is defined %}
+                <div class="tag-list">
+                    {% for tag in question.tags %}
+                        <a class="btn btn-light" href="{{ path('tag_list', {name: tag.name}) }}">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="started">
+                <a href="#">{{ question.user.username }}</a>
+                asked on
+                <time class="started-date" datetime="{{ question.createdAt | date('c') }}">
+                    {{ question.createdAt | ago  }}
+                </time>
+            </div>
+        </div>
+    </section>
+{% endfor %}

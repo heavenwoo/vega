@@ -1,0 +1,74 @@
+{% set actived = 'question' %}
+
+{% extends "global/layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            {% for message in app.flashes('error') %}
+                <div class="text-danger">{{ message }}</div>
+                {% endfor %}
+            <article>
+                <h3>{{ question.subject }}</h3>
+                <div class="content">
+                    {{ question.content | markdown }}
+                </div>
+                {% if app.user is not null and app.user.username == question.user.username %}
+                    <a href="{{ path('question_edit', {id: question.id}) }}"
+                       class="btn btn-primary">{{ 'question.edit' | trans }}</a>
+                {% endif %}
+                <div class="comment">
+                    {% for comment in question.comments %}
+                        <div class="item">
+                            <div class="content">
+                                {{ comment.content }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="tag-list">
+                    {% for tag in question.tags %}
+                        <a class="btn btn-light" href="">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h3>{{ answers.getTotalItemCount }} {{ 'answer.answer_nums' | trans }}</h3>
+            <div class="answers-list">
+                {% for answer in answers %}
+                    <section class="answer">
+                        {% if answer.best %}
+                            <div class="text-success" title="{{ 'answer.accepted_answer' | trans }}"><i
+                                        class="fa fa-check"></i></div>
+                        {% endif %}
+                        {{ answer.content }}
+                        <time datetime="{{ answer.createdAt | date('c') }}">{{ answer.createdAt | ago }}</time>
+                    </section>
+                {% endfor %}
+            </div>
+        </div>
+        {{ knp_pagination_render(answers) }}
+        <div class="card-body">
+            {% if app.user is not null %}
+                {{ include("global/_answer_form.html.twig") }}
+            {% else %}
+                {{ 'form.answer_create_login_needed' | trans }}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

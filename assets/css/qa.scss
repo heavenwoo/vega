@@ -1,0 +1,162 @@
+//override Bootstrap 4.0
+$primary: #ff5e5b; //#00796b;
+$secondary: #e03838; //#009688;
+$success: #45A163; //#5fba7d
+$body-bg: #f8f9fa;
+
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap-grid';
+//@import '~bootstrap/scss/bootstrap-reboot';
+
+//taichi
+//* {
+//  -webkit-border-radius: 0 !important;
+//  -moz-border-radius: 0 !important;
+//  border-radius: 0 !important;
+//}
+.body-container {
+  flex: 1;
+  min-height: 600px;
+}
+footer {
+  background: $gray-200;
+  margin-top: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+a:hover {
+  color: $secondary;
+  text-decoration: none;
+}
+pre code {
+  font-family: Monaco, monospace;
+  font-size: 12px;
+}
+.question-summary {
+  display: block;
+  border-bottom: 1px solid #eee;
+  padding: .6rem 0;
+  margin: 0;
+  overflow: hidden;
+}
+.question-summary .cp {
+  float: left;
+  margin-right: 5px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1;
+  color: $gray-600;
+  cursor: pointer;
+}
+.cp .status {
+  display: inline-block;
+  padding-top: 6px;
+  width: 3.5rem;
+  height: 3rem;
+}
+.cp .answered-accepted {
+  color: $white;
+  background: $success;
+  border-radius: .2rem;
+}
+.cp .answered {
+  border: 1px solid $success;
+  border-radius: .2rem;
+}
+.cp .mini-counts {
+  display: block;
+  font-size: 1.2rem;
+}
+.cp small {
+  font-size: .7rem;
+}
+.question-summary .summary {
+  display: block;
+}
+.summary h3 {
+  font-size: 1rem;
+}
+.summary .tag-list {
+  display: block;
+}
+.tag-list .btn {
+  padding: 2px 4px;
+  font-size: .7rem;
+}
+.started {
+  font-size: .7rem;
+  color: $gray-600;
+}
+.summary .tag-list {
+  float: left;
+}
+.summary .started {
+  float: right;
+}
+.answers-list .answer {
+  padding: .5rem 0;
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+button a {
+  color: $gray-100;
+}
+button a:hover {
+  color: $gray-400;
+}
+
+.float-left, .fl {
+  float: left !important
+}
+
+.float-right, .fr {
+  float: right !important
+}
+
+.page-description {
+  font-size: 14px;
+  margin: 10px 0;
+  line-height: 18px
+}
+
+.page-sizer, .pager {
+  margin: 20px 0
+}
+
+.page-sizer a, .pager a, .page-sizer a:hover, .pager a:hover {
+  text-decoration: none
+}
+
+.page-numbers {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #848d95;
+  border: 1px solid #e4e6e8;
+  border-radius: 3px;
+  background-color: transparent
+}
+
+.page-numbers.desc, .page-numbers.dots, .page-numbers.desc:hover, .page-numbers.dots:hover {
+  color: #848d95;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none
+}
+
+.page-numbers, .page-numbers:hover {
+  text-decoration: none
+}
+
+.page-numbers:hover {
+  color: #FFF;
+  background-color: $primary;
+  border-color: transparent
+}
+
+.page-numbers.current {
+  color: #FFF;
+  background-color: $primary;
+  border-color: transparent
+}

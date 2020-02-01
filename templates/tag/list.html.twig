@@ -1,0 +1,12 @@
+{% set actived = 'tag' %}
+
+{% extends "global/layout.html.twig" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            {% include "question/_list.html.twig" %}
+        </div>
+        {{ knp_pagination_render(questions) }}
+    </div>
+{% endblock %}

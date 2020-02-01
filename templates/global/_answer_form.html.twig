@@ -1,0 +1,29 @@
+{{ form_start(answerForm, {method: 'POST', action: path('answer_create', {'id': question.id})}) }}
+        {#  instead of displaying form fields one by one, you can also display them
+            all with their default options and styles just by calling to this function:
+
+            {{ form_widget(form) }}
+        #}
+
+<fieldset>
+    <legend>
+        <i class="fa fa-comment" aria-hidden="true"></i> {{ 'form.answer_create' | trans }}
+    </legend>
+
+    {# Render any global form error (e.g. when a constraint on a public getter method failed) #}
+    {{ form_errors(answerForm) }}
+
+    <div class="form-group {% if not answerForm.content.vars.valid %}has-error{% endif %}">
+        {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
+        {{ form_errors(answerForm.content) }}
+
+        {{ form_widget(answerForm.content, {attr: {rows: 10, class: 'form-control'}}) }}
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary pull-right" type="submit">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i> {{ 'form.publish_answer' | trans }}
+        </button>
+    </div>
+</fieldset>
+{{ form_end(answerForm) }}

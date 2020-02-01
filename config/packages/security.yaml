@@ -1,0 +1,45 @@
+security:
+    encoders:
+        Vega\Entity\User:
+            algorithm: sodium
+            cost: 12
+    # https://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        database_users:
+            entity: { class: Vega\Entity\User, property: username }
+    #    in_memory: { memory: null }
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            pattern: ^/
+            anonymous: true
+            logout:
+                path: security_logout
+                target: /
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+            form_login:
+                provider: database_users
+                login_path: security_login
+                check_path: security_login
+                default_target_path: /
+                use_referer: true
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+
+    access_control:
+        - { path: '^/admin', roles: ROLE_ADMIN }
+        - { path: '/question_create', roles: ROLE_USER }

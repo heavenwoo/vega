@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="messages.en">
+    <unit id="pQdYpeG">
+      <notes>
+        <note category="file-source" priority="1">templates/global/navbar.html.twig:14</note>
+      </notes>
+      <segment>
+        <source>nav.questions</source>
+        <target>Questions</target>
+      </segment>
+    </unit>
+    <unit id="_FRu30E">
+      <notes>
+        <note category="file-source" priority="1">templates/global/navbar.html.twig:17</note>
+      </notes>
+      <segment>
+        <source>nav.posts</source>
+        <target>Posts</target>
+      </segment>
+    </unit>
+    <unit id="E.sPE5L">
+      <notes>
+        <note category="file-source" priority="1">templates/global/navbar.html.twig:20</note>
+      </notes>
+      <segment>
+        <source>nav.tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="PcTRect">
+      <notes>
+        <note category="file-source" priority="1">templates/global/sidebar.html.twig:4</note>
+      </notes>
+      <segment>
+        <source>question.ask</source>
+        <target>Ask question</target>
+      </segment>
+    </unit>
+    <unit id="okzpfQC">
+      <notes>
+        <note category="file-source" priority="1">templates/global/sidebar.html.twig:5</note>
+      </notes>
+      <segment>
+        <source>user.logout</source>
+        <target>Logout</target>
+      </segment>
+    </unit>
+    <unit id="LboIWLZ">
+      <notes>
+        <note category="file-source" priority="1">templates/user/login.html.twig:14</note>
+      </notes>
+      <segment>
+        <source>user.username</source>
+        <target>Username</target>
+      </segment>
+    </unit>
+    <unit id="pVZ4m.T">
+      <notes>
+        <note category="file-source" priority="1">templates/user/login.html.twig:19</note>
+      </notes>
+      <segment>
+        <source>user.password</source>
+        <target>Password</target>
+      </segment>
+    </unit>
+    <unit id="rruB2OR">
+      <notes>
+        <note category="file-source" priority="1">templates/user/login.html.twig:29</note>
+      </notes>
+      <segment>
+        <source>user.login</source>
+        <target>Login</target>
+      </segment>
+    </unit>
+    <unit id="UIhqdqx">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/QuestionController.php:109</note>
+      </notes>
+      <segment>
+        <source>question.created</source>
+        <target>Question has been created successfully!</target>
+      </segment>
+    </unit>
+    <unit id="HB6iFJY">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/QuestionController.php:135</note>
+      </notes>
+      <segment>
+        <source>question.updated</source>
+        <target>Question has been updated successfully!</target>
+      </segment>
+    </unit>
+    <unit id="TA4HGAU">
+      <notes>
+        <note category="file-source" priority="1">src/Controller/QuestionController.php:162</note>
+      </notes>
+      <segment>
+        <source>question.deleted</source>
+        <target>Question has been deleted successfully!</target>
+      </segment>
+    </unit>
+    <unit id="qqpGLJl">
+      <notes>
+        <note category="file-source" priority="1">src/Form/AnswerType.php:17</note>
+        <note category="file-source" priority="1">src/Form/CommentType.php:16</note>
+        <note category="file-source" priority="1">src/Form/PostType.php:23</note>
+        <note category="file-source" priority="1">src/Form/QuestionType.php:23</note>
+      </notes>
+      <segment>
+        <source>label.content</source>
+        <target>Content</target>
+      </segment>
+    </unit>
+    <unit id="2uxHavc">
+      <notes>
+        <note category="file-source" priority="1">src/Form/AnswerType.php:21</note>
+        <note category="file-source" priority="1">src/Form/PostType.php:18</note>
+        <note category="file-source" priority="1">src/Form/QuestionType.php:18</note>
+      </notes>
+      <segment>
+        <source>label.submit</source>
+        <target>Submit</target>
+      </segment>
+    </unit>
+    <unit id="8gkrODb">
+      <notes>
+        <note category="file-source" priority="1">src/Form/PostType.php:19</note>
+        <note category="file-source" priority="1">src/Form/QuestionType.php:19</note>
+      </notes>
+      <segment>
+        <source>label.subject</source>
+        <target>Subject</target>
+      </segment>
+    </unit>
+    <unit id="ijQyGRo">
+      <notes>
+        <note category="file-source" priority="1">src/Form/PostType.php:27</note>
+        <note category="file-source" priority="1">src/Form/QuestionType.php:27</note>
+      </notes>
+      <segment>
+        <source>label.tags</source>
+        <target>Tags</target>
+      </segment>
+    </unit>
+    <unit id="LDhDPrF">
+      <notes>
+        <note category="file-source" priority="1">src/Form/UserType.php:15</note>
+      </notes>
+      <segment>
+        <source>label.username</source>
+        <target>Username</target>
+      </segment>
+    </unit>
+    <unit id="9pvowqn">
+      <notes>
+        <note category="file-source" priority="1">src/Form/UserType.php:19</note>
+      </notes>
+      <segment>
+        <source>label.password</source>
+        <target>Password</target>
+      </segment>
+    </unit>
+    <unit id="540R2gg">
+      <segment>
+        <source>admin.dashboard</source>
+        <target>admin.dashboard</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

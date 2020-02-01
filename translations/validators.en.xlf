@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="en">
+  <file id="validators.en">
+    <unit id="CqKNnyk">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/Question.php:0</note>
+      </notes>
+      <segment>
+        <source>question.content_too_short</source>
+        <target>The content is too short</target>
+      </segment>
+    </unit>
+    <unit id="CWHJXJi">
+      <notes>
+        <note category="file-source" priority="1">src/Entity/Post.php:0</note>
+      </notes>
+      <segment>
+        <source>the content is too short</source>
+        <target></target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

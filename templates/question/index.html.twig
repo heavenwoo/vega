@@ -1,0 +1,25 @@
+{% set actived = 'index' %}
+
+{% extends "global/layout.html.twig" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <div class="container">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button"
+                            class="btn btn-primary{% if sort == 'latest' or sort == '' %} active{% endif %}">
+                        <a
+                                href="{{ path('question_index') }}">latest</a></button>
+                    <button type="button" class="btn btn-primary{% if sort == 'hottest' %} active{% endif %}"><a
+                                href="{{ path('question_index') }}?sort=hottest">hottest</a></button>
+                    <button type="button" class="btn btn-primary{% if sort == 'unanswered' %} active{% endif %}"><a
+                                href="{{ path('question_index') }}?sort=unanswered">unanswered</a></button>
+                </div>
+            </div>
+            {% set tag_list = true %}
+            {% include "question/_list.html.twig" with {'tags_list': true} %}
+        </div>
+        {{ knp_pagination_render(questions) }}
+    </div>
+{% endblock %}

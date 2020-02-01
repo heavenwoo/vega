@@ -1,0 +1,18 @@
+{
+  "entrypoints": {
+    "scripts": {
+      "js": [
+        "/assets/runtime.js",
+        "/assets/scripts.js"
+      ]
+    },
+    "styles": {
+      "js": [
+        "/assets/runtime.js"
+      ],
+      "css": [
+        "/assets/styles.css"
+      ]
+    }
+  }
+}

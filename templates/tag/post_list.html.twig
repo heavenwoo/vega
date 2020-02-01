@@ -1,0 +1,12 @@
+{% set actived = 'post' %}
+
+{% extends "global/layout.html.twig" %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            {% include "post/_list.html.twig" %}
+        </div>
+        {{ knp_pagination_render(posts) }}
+    </div>
+{% endblock %}
