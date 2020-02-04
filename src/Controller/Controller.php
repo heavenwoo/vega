@@ -14,9 +14,9 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        dump(realpath(__DIR__ . '/../../'));
+        //dump(realpath(__DIR__ . '/../../'));
         if (!is_file(dirname(getcwd()) . '/installed.lock')) {
-            dump('uninstalled');
+            //dump('uninstalled');
         }
     }
 
