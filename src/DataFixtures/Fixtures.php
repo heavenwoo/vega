@@ -8,7 +8,6 @@ use Vega\Entity\Answer;
 use Vega\Entity\Comment;
 use Vega\Entity\Post;
 use Vega\Entity\Question;
-//use Vega\Entity\Setting;
 use Vega\Entity\Tag;
 use Vega\Entity\User;
 use Vega\Utils\Slugger;
@@ -46,7 +45,6 @@ class Fixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $this->loadTag($manager);
-        //$this->loadSetting($manager);
         $this->loadUser($manager);
         $this->loadQuestion($manager);
         $this->loadPosts($manager);
@@ -124,7 +122,6 @@ class Fixtures extends Fixture
             $question->setVote(mt_rand(0, 10000));
             $question->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
             $question->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
-            //$question->setCategory($this->getReference('category-' . mt_rand(1, self::CATEGORY_NUMS)));
             $question->addTags(...$this->getRandomTags());
 
             $this->addAnswers($manager, $question);
@@ -211,30 +208,4 @@ class Fixtures extends Fixture
             return $this->getReference('tag-' . $tagName);
         }, $selectedTags);
     }
-//
-//    private function getSettings()
-//    {
-//        return [
-//            [
-//                'name' => 'sitename',
-//                'value' => 'Vega Question Answer System'
-//            ],
-//            [
-//                'name' => 'siteurl',
-//                'value' => 'http://Vega.red'
-//            ],
-//            [
-//                'name' => 'site_admin_email',
-//                'value' => 'heavenwoo@live.com'
-//            ],
-//            [
-//                'name' => 'index_question_nums',
-//                'value' => 10
-//            ],
-//            [
-//                'name' => 'index_tag_nums',
-//                'value' => 10
-//            ]
-//        ];
-//    }
 }
