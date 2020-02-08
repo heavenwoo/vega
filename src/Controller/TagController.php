@@ -81,7 +81,8 @@ class TagController extends Controller
         PostRepository $postRepository,
         TagRepository $tagRepository
     ) {
-        $settings = $this->getSettings();
+        //$settings = $this->getSettings();
+        $settings = $this->getParameter('settings');
         $index = $this->getParameter('index');
 
         $query = $postRepository->findPostsQueryByTag($tag);

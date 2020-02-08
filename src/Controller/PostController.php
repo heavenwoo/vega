@@ -55,7 +55,8 @@ class PostController extends Controller
      */
     public function show(int $id, PostRepository $postRepository, TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $settings = $this->getSettings();
+        //$settings = $this->getSettings();
+        $settings = $this->getParameter('settings');
 
         /** @var Post $post */
         $post = $postRepository->getPostById($id);
