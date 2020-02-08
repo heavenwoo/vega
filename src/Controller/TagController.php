@@ -43,8 +43,7 @@ class TagController extends Controller
         TagRepository $tagRepository,
         PaginatorInterface $paginator
     ): Response {
-        $settings = $this->getSettings();
-        $index = $this->getParameter('index');
+        $settings = $this->getParameter('settings');
 
         $query = $questionRepository->findQuestionsQueryByTag($tag);
 
@@ -54,14 +53,13 @@ class TagController extends Controller
             20
         );
 
-        $tags = $tagRepository->findBy([], null, $index['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
 
         return $this->render(
             "tag/list.html.twig",
             [
                 'questions' => $questions,
                 'tags'      => $tags,
-                'setting'   => $settings,
             ]
         );
     }
@@ -81,9 +79,7 @@ class TagController extends Controller
         PostRepository $postRepository,
         TagRepository $tagRepository
     ) {
-        //$settings = $this->getSettings();
         $settings = $this->getParameter('settings');
-        $index = $this->getParameter('index');
 
         $query = $postRepository->findPostsQueryByTag($tag);
 
@@ -95,14 +91,13 @@ class TagController extends Controller
             20
         );
 
-        $tags = $tagRepository->findBy([], null, $index['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
 
         return $this->render(
             "tag/post_list.html.twig",
             [
                 'posts'   => $posts,
                 'tags'    => $tags,
-                'setting' => $settings,
             ]
         );
     }

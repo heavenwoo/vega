@@ -53,8 +53,6 @@ class QuestionController extends Controller
      */
     public function show(int $id, QuestionRepository $questionRepository, AnswerRepository $answerRepository, TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        $settings = $this->getParameter('settings');
-
         /** @var Question $question */
         $question = $questionRepository->getQuestionById($id);
 
@@ -79,7 +77,6 @@ class QuestionController extends Controller
         return $this->render("question/show.html.twig", [
             'question' => $question,
             'answers' => $answers,
-            'setting' => $settings,
             'tags' => $tagRepository->findBy([], null, 50),
             'answerForm' => $answerForm->createView(),
             'commentForm' => $commentForm->createView(),
@@ -117,7 +114,6 @@ class QuestionController extends Controller
         }
 
         return $this->render("question/create.html.twig", [
-            'setting' => $this->getSettings(),
             'question' => $question,
             'form' => $form->createView()
         ]);
@@ -147,7 +143,6 @@ class QuestionController extends Controller
         }
 
         return $this->render("question/create.html.twig", [
-            'setting' => $this->getSettings(),
             'question' => $question,
             'form' => $form->createView(),
         ]);

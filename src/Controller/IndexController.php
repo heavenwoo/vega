@@ -33,7 +33,6 @@ class IndexController extends Controller
         TagRepository $tagRepository,
         PaginatorInterface $paginator
     ): Response {
-        //$settings = $this->getSettings();
         $settings = $this->getParameter('settings');
 
         $sort = strtolower($request->query->get('sort', null));
@@ -56,7 +55,6 @@ class IndexController extends Controller
             [
                 'questions' => $questions,
                 'tags'      => $tags,
-                'setting'   => $settings,
                 'sort'      => $sort,
             ]
         );

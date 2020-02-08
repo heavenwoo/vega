@@ -26,7 +26,6 @@ class PostController extends Controller
      */
     public function list(Request $request, PostRepository $postRepository, TagRepository $tagRepository, PaginatorInterface $paginator): Response
     {
-        //$settings = $this->getSettings();
         $settings = $this->getParameter('settings');
 
         $posts = $paginator->paginate(
@@ -40,7 +39,6 @@ class PostController extends Controller
         return $this->render("post/list.html.twig", [
             'posts' => $posts,
             'tags' => $tags,
-            'setting' => $settings,
         ]);
     }
 
@@ -55,9 +53,6 @@ class PostController extends Controller
      */
     public function show(int $id, PostRepository $postRepository, TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
     {
-        //$settings = $this->getSettings();
-        $settings = $this->getParameter('settings');
-
         /** @var Post $post */
         $post = $postRepository->getPostById($id);
 
@@ -74,7 +69,6 @@ class PostController extends Controller
 
         return $this->render("post/show.html.twig", [
             'post' => $post,
-            'setting' => $settings,
             'tags' => $tagRepository->findBy([], null, 10),
             'commentForm' => $commentForm->createView(),
         ]);

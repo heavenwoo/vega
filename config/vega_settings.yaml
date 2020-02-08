@@ -2,6 +2,9 @@ parameters:
   settings:
     question_nums: 15
     tag_nums: 20
+
+twig:
+  globals:
     sitename: 'Vega Question Answer System'
     siteurl: 'http://Vega.red'
     site_admin_email: 'heavenwoo@livve.com'
