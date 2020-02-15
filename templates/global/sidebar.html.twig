@@ -1,22 +1,28 @@
-<div class="card mb-3">
-    <div class="card-body">
+<div class="card">
+    <div class="toolbar toolbar--inner mb-0">
+        <div class="toolbar__label">My Action</div>
+    </div>
+    <div class="listview__item">
         {% if is_granted("ROLE_USER") %}
             {% if is_granted("ROLE_ADMIN") %}
-                <a href="{{ path('admin_dashboard') }}" class="btn btn-secondary">{{ 'admin.dashboard' | trans }}</a>
+                <a href="{{ path('admin_dashboard') }}" class="btn btn-secondary btn-block">{{ 'admin.dashboard' | trans }}</a>
             {% endif %}
-            <a href="{{ path('question_create') }}" class="btn btn-primary">{{ 'question.ask' | trans }}</a>
-            <a href="{{ path('security_logout') }}" class="btn btn-primary">{{ 'security.logout' | trans }}</a>
+            <a href="{{ path('question_create') }}" class="btn btn-primary btn-block">{{ 'question.ask' | trans }}</a>
+            <a href="{{ path('security_logout') }}" class="btn btn-primary btn-block">{{ 'security.logout' | trans }}</a>
         {% else %}
-            <a href="{{ path('security_login') }}" class="btn btn-success">Login</a>
+            <a href="{{ path('security_login') }}" class="btn btn-success btn-block">Login</a>
         {% endif %}
     </div>
 </div>
 
 <div class="card">
-    <div class="card-body">
-        <div class="tag-list">
+    <div class="toolbar toolbar--inner mb-0">
+        <div class="toolbar__label">Tags</div>
+    </div>
+    <div class="listview__item">
+        <div class="tags">
             {% for tag in tags %}
-                <a href="{{ path('tag_list', {name: tag.name}) }}" class="btn btn-light">{{ tag.name }}</a>
+                <a href="{{ path('tag_list', {name: tag.name}) }}">{{ tag.name }}</a>
             {% endfor %}
         </div>
     </div>

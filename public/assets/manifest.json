@@ -1,5 +1,26 @@
 {
+  "assets/animate.css": "/assets/animate.css",
+  "assets/material-design-iconic-font.css": "/assets/material-design-iconic-font.css",
   "assets/runtime.js": "/assets/runtime.js",
   "assets/scripts.js": "/assets/scripts.js",
-  "assets/styles.css": "/assets/styles.css"
+  "assets/styles.css": "/assets/styles.css",
+  "assets/fonts/Material-Design-Iconic-Font.woff2": "/assets/fonts/Material-Design-Iconic-Font.a4d31128.woff2",
+  "assets/fonts/Material-Design-Iconic-Font.ttf": "/assets/fonts/Material-Design-Iconic-Font.b351bd62.ttf",
+  "assets/fonts/Material-Design-Iconic-Font.woff": "/assets/fonts/Material-Design-Iconic-Font.d2a55d33.woff",
+  "assets/fonts/Roboto-Bold-webfont.ttf": "/assets/fonts/Roboto-Bold-webfont.3dcc0e0f.ttf",
+  "assets/fonts/Roboto-Bold-webfont.woff": "/assets/fonts/Roboto-Bold-webfont.8b18d65d.woff",
+  "assets/fonts/Roboto-Bold-webfont.eot": "/assets/fonts/Roboto-Bold-webfont.ecdd509c.eot",
+  "assets/fonts/Roboto-Light-webfont.woff": "/assets/fonts/Roboto-Light-webfont.816d43bc.woff",
+  "assets/fonts/Roboto-Light-webfont.eot": "/assets/fonts/Roboto-Light-webfont.a990f611.eot",
+  "assets/fonts/Roboto-Light-webfont.ttf": "/assets/fonts/Roboto-Light-webfont.d8472f7b.ttf",
+  "assets/fonts/Roboto-Medium-webfont.ttf": "/assets/fonts/Roboto-Medium-webfont.1d2af757.ttf",
+  "assets/fonts/Roboto-Medium-webfont.eot": "/assets/fonts/Roboto-Medium-webfont.4d9f3f9e.eot",
+  "assets/fonts/Roboto-Medium-webfont.woff": "/assets/fonts/Roboto-Medium-webfont.b9d01ac1.woff",
+  "assets/fonts/Roboto-Regular-webfont.eot": "/assets/fonts/Roboto-Regular-webfont.30799efa.eot",
+  "assets/fonts/Roboto-Regular-webfont.woff": "/assets/fonts/Roboto-Regular-webfont.3e5675c8.woff",
+  "assets/fonts/Roboto-Regular-webfont.ttf": "/assets/fonts/Roboto-Regular-webfont.7f1320f7.ttf",
+  "assets/images/Roboto-Bold-webfont.svg": "/assets/images/Roboto-Bold-webfont.375c4f3b.svg",
+  "assets/images/Roboto-Light-webfont.svg": "/assets/images/Roboto-Light-webfont.3581138b.svg",
+  "assets/images/Roboto-Medium-webfont.svg": "/assets/images/Roboto-Medium-webfont.88e897b6.svg",
+  "assets/images/Roboto-Regular-webfont.svg": "/assets/images/Roboto-Regular-webfont.da61d7ef.svg"
 }

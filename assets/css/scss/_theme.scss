@@ -1,0 +1,171 @@
+// Theming
+@mixin ma-theme($color) {
+  .header,
+  .login__block__header,
+  .login__block__btn,
+  .top-menu {
+    background-color: $color;
+  }
+
+  .navigation__sub--active > a,
+  .navigation__active > a,
+  .navigation__active:before {
+    color: $color !important;
+  }
+}
+
+$themes: (
+  red: $red,
+  purple: $purple,
+  indigo: $indigo,
+  blue: $blue,
+  cyan: $cyan,
+  teal: $teal,
+  green: $green,
+  brown: $brown,
+  orange: $orange,
+  blue-grey: $blue-grey
+);
+
+@each $theme, $value in $themes {
+  [data-ma-theme="#{$theme}"] {
+    @include ma-theme($value);
+  }
+}
+
+.theme-switch {
+  .btn-group--colors {
+    display: block;
+    margin-top: 0.75rem;
+  }
+}
+
+[data-ma-theme="red"] .header,
+[data-ma-theme="red"] .login__block__header,
+[data-ma-theme="red"] .login__block__btn,
+[data-ma-theme="red"] .top-menu {
+  background-color: $red;
+}
+
+[data-ma-theme="red"] .navigation__sub--active > a,
+[data-ma-theme="red"] .navigation__active > a,
+[data-ma-theme="red"] .navigation__active:before {
+  color: $red;
+}
+
+[data-ma-theme="purple"] .header,
+[data-ma-theme="purple"] .login__block__header,
+[data-ma-theme="purple"] .login__block__btn,
+[data-ma-theme="purple"] .top-menu {
+  background-color: $purple;
+}
+
+[data-ma-theme="purple"] .navigation__sub--active > a,
+[data-ma-theme="purple"] .navigation__active > a,
+[data-ma-theme="purple"] .navigation__active:before {
+  color: $purple;
+}
+
+[data-ma-theme="indigo"] .header,
+[data-ma-theme="indigo"] .login__block__header,
+[data-ma-theme="indigo"] .login__block__btn,
+[data-ma-theme="indigo"] .top-menu {
+  background-color: $indigo;
+}
+
+[data-ma-theme="indigo"] .navigation__sub--active > a,
+[data-ma-theme="indigo"] .navigation__active > a,
+[data-ma-theme="indigo"] .navigation__active:before {
+  color: $indigo;
+}
+
+[data-ma-theme="blue"] .header,
+[data-ma-theme="blue"] .login__block__header,
+[data-ma-theme="blue"] .login__block__btn,
+[data-ma-theme="blue"] .top-menu {
+  background-color: $blue;
+}
+
+[data-ma-theme="blue"] .navigation__sub--active > a,
+[data-ma-theme="blue"] .navigation__active > a,
+[data-ma-theme="blue"] .navigation__active:before {
+  color: $blue;
+}
+
+[data-ma-theme="cyan"] .header,
+[data-ma-theme="cyan"] .login__block__header,
+[data-ma-theme="cyan"] .login__block__btn,
+[data-ma-theme="cyan"] .top-menu {
+  background-color: $cyan;
+}
+
+[data-ma-theme="cyan"] .navigation__sub--active > a,
+[data-ma-theme="cyan"] .navigation__active > a,
+[data-ma-theme="cyan"] .navigation__active:before {
+  color: $cyan;
+}
+
+[data-ma-theme="teal"] .header,
+[data-ma-theme="teal"] .login__block__header,
+[data-ma-theme="teal"] .login__block__btn,
+[data-ma-theme="teal"] .top-menu {
+  background-color: $teal;
+}
+
+[data-ma-theme="teal"] .navigation__sub--active > a,
+[data-ma-theme="teal"] .navigation__active > a,
+[data-ma-theme="teal"] .navigation__active:before {
+  color: $teal;
+}
+
+[data-ma-theme="green"] .header,
+[data-ma-theme="green"] .login__block__header,
+[data-ma-theme="green"] .login__block__btn,
+[data-ma-theme="green"] .top-menu {
+  background-color: $green;
+}
+
+[data-ma-theme="green"] .navigation__sub--active > a,
+[data-ma-theme="green"] .navigation__active > a,
+[data-ma-theme="green"] .navigation__active:before {
+  color: $green;
+}
+
+[data-ma-theme="brown"] .header,
+[data-ma-theme="brown"] .login__block__header,
+[data-ma-theme="brown"] .login__block__btn,
+[data-ma-theme="brown"] .top-menu {
+  background-color: $brown;
+}
+
+[data-ma-theme="brown"] .navigation__sub--active > a,
+[data-ma-theme="brown"] .navigation__active > a,
+[data-ma-theme="brown"] .navigation__active:before {
+  color: $brown;
+}
+
+[data-ma-theme="orange"] .header,
+[data-ma-theme="orange"] .login__block__header,
+[data-ma-theme="orange"] .login__block__btn,
+[data-ma-theme="orange"] .top-menu {
+  background-color: $orange;
+}
+
+[data-ma-theme="orange"] .navigation__sub--active > a,
+[data-ma-theme="orange"] .navigation__active > a,
+[data-ma-theme="orange"] .navigation__active:before {
+  color: $orange;
+}
+
+[data-ma-theme="blue-grey"] .header,
+[data-ma-theme="blue-grey"] .login__block__header,
+[data-ma-theme="blue-grey"] .login__block__btn,
+[data-ma-theme="blue-grey"] .top-menu {
+  background-color: $blue-grey;
+}
+
+[data-ma-theme="blue-grey"] .navigation__sub--active > a,
+[data-ma-theme="blue-grey"] .navigation__active > a,
+[data-ma-theme="blue-grey"] .navigation__active:before {
+  color: $blue-grey;
+}

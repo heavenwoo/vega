@@ -4,8 +4,8 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet"
-          href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css">
+    {{ encore_entry_link_tags('material-design-iconic-font') }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css">
 {% endblock %}
 
 {% block javascripts %}
@@ -15,60 +15,107 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card">
-        <div class="card-body">
-            {% for message in app.flashes('error') %}
-                <div class="text-danger">{{ message }}</div>
-                {% endfor %}
-            <article>
-                <h3>{{ question.subject }}</h3>
-                <div class="content">
-                    {{ question.content | markdown }}
+    {% for message in app.flashes('error') %}
+        <div class="text-danger">{{ message }}</div>
+    {% endfor %}
+    <div class="content__inner q-a">
+        <div class="q-a__question">
+            <div class="q-a__vote hidden-sm-down">
+                <div class="icon-toggle">
+                    <input type="checkbox">
+                    <i class="zmdi zmdi-thumb-up"></i>
                 </div>
-                {% if app.user is not null and app.user.username == question.user.username %}
-                    <a href="{{ path('question_edit', {id: question.id}) }}"
-                       class="btn btn-primary">{{ 'question.edit' | trans }}</a>
-                {% endif %}
-                <div class="comment">
-                    {% for comment in question.comments %}
-                        <div class="item">
-                            <div class="content">
-                                {{ comment.content }}
-                            </div>
-                        </div>
-                    {% endfor %}
+
+                <div class="q-a__vote__votes">{{ question.votes }}</div>
+
+                <div class="icon-toggle">
+                    <input type="checkbox">
+                    <i class="zmdi zmdi-thumb-down"></i>
                 </div>
-                <div class="tag-list">
-                    {% for tag in question.tags %}
-                        <a class="btn btn-light" href="">{{ tag.name }}</a>
-                    {% endfor %}
-                </div>
-            </article>
-        </div>
-    </div>
-    <div class="card mt-3">
-        <div class="card-body">
-            <h3>{{ answers.getTotalItemCount }} {{ 'answer.answer_nums' | trans }}</h3>
-            <div class="answers-list">
-                {% for answer in answers %}
-                    <section class="answer">
-                        {% if answer.best %}
-                            <div class="text-success" title="{{ 'answer.accepted_answer' | trans }}"><i
-                                        class="fa fa-check"></i></div>
-                        {% endif %}
-                        {{ answer.content }}
-                        <time datetime="{{ answer.createdAt | date('c') }}">{{ answer.createdAt | ago }}</time>
-                    </section>
+            </div>
+
+            <h2>{{ question.subject }}</h2>
+            <p>{{ question.content | markdown }}</p>
+
+            <div class="tags mt-3">
+                {% for tag in question.tags %}
+                    <a href="{{ path('tag_list', {name: tag.name}) }}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
+
+            <div class="q-a__info">
+                <div class="q-a__op">
+                    <span>Asked by <a href="#">{{ question.user }}</a> on <time>{{ question.createdAt | ago }}</time></span>
+                </div>
+
+                <div class="actions hidden-sm-down">
+                    <a href="" class="actions__item">
+                        <i href="" data-toggle="tooltip" data-title="Report" class="zmdi zmdi-flag" data-original-title="" title=""></i>
+                    </a>
+                    <a href="" class="actions__item">
+                        <i href="" data-toggle="tooltip" data-title="Make Favourite" class="zmdi zmdi-star" data-original-title="" title=""></i>
+                    </a>
+                    <a href="" class="actions__item">
+                        <i href="" data-toggle="tooltip" data-title="Share" class="zmdi zmdi-share" data-original-title="" title=""></i>
+                    </a>
+                </div>
+            </div>
         </div>
-        {{ knp_pagination_render(answers) }}
-        <div class="card-body">
-            {% if app.user is not null %}
-                {{ include("global/_answer_form.html.twig") }}
-            {% else %}
-                {{ 'form.answer_create_login_needed' | trans }}
-            {% endif %}
+    </div>
+
+    <div class="q-a__question">
+        <div class="content__inner content__inner--sm">
+            <div class="card">
+                <div class="toolbar toolbar--inner">
+                    <div class="toolbar__label">Total {{ answers.totalItemCount }} Answers</div>
+
+                    <nav class="toolbar__nav ml-auto hidden-sm-down">
+                        <a href="" class="active">Newest</a>
+                        <a href="">Oldest</a>
+                        <a href="">Active</a>
+                    </nav>
+                </div>
+
+                <div class="listview listview--bordered listview--block">
+                        {% for answer in answers %}
+                            {% if answer.best %}
+                                <div class="text-success" title="{{ 'answer.accepted_answer' | trans }}"><i class="fa fa-check"></i></div>
+                            {% endif %}
+                            <div class="listview__item">
+                                <p>{{ answer.content | markdown}}</p>
+                                <div class="q-a__info">
+                                    <div class="q-a__op">
+                                        <span>Replied by <a href="#">{{ answer.user.username }}</a> <time datetime="{{ answer.createdAt | date('c') }}">{{ answer.createdAt | ago }}</time></span>
+                                    </div>
+
+                                    <div class="q-a__vote-answer hidden-sm-down">
+                                        <div class="icon-toggle">
+                                            <input type="checkbox">
+                                            <i class="zmdi zmdi-thumb-up"></i>
+                                        </div>
+
+                                        <div>10</div>
+
+                                        <div class="icon-toggle">
+                                            <input type="checkbox">
+                                            <i class="zmdi zmdi-thumb-down"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {{ knp_pagination_render(answers) }}
+
+                    <div class="listview__item">
+                            {% if app.user is not null %}
+                                {{ include("global/_answer_form.html.twig") }}
+                            {% else %}
+                                {{ 'form.answer_create_login_needed' | trans }}
+                            {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

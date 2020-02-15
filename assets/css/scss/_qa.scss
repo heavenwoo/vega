@@ -1,0 +1,145 @@
+.q-a__item {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+
+.q-a__stat {
+  margin: 0.35rem 2rem 0 0;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+
+.q-a__stat > span {
+  display: inline-block;
+  width: 70px;
+  border-radius: 2px;
+  background-color: #f6f6f6;
+  text-align: center;
+  padding: 0.9rem 0.5rem 0.65rem;
+  margin-right: 0.2rem;
+}
+
+.q-a__stat > span > strong {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 100%;
+  color: #333;
+  margin: 0.1rem 0 0.075rem;
+}
+
+.q-a__stat > span > small {
+  text-transform: uppercase;
+  line-height: 100%;
+}
+
+.q-a__question {
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .q-a__question {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .q-a__question {
+    padding-left: 100px;
+  }
+}
+
+.q-a__question > h2 {
+  font-size: 1.25rem;
+  font-weight: normal;
+}
+
+.q-a__question > h2 + p {
+  margin-top: 1rem;
+}
+
+.q-a__vote {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+}
+
+.q-a__vote > i {
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.q-a__vote__votes {
+  padding: .5rem 0;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  width: 75px;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+  color: #333;
+  font-weight: normal;
+}
+
+.q-a__info {
+  margin-top: 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid #e9ecef;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.q-a__info .actions {
+  margin: 0 -0.5rem 0 auto;
+}
+
+.q-a__op > a > img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.q-a__vote-answer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.answered, .answered-accepted {
+  border: 1px solid transparent
+}
+
+.q-a__stat > span.answered {
+  border-color: rgba(69, 161, 99, 0.5);
+  strong, small {
+    color: $success
+  }
+}
+
+.q-a__stat > span.answered-accepted,  {
+  color: $white
+}
+
+.unanswered span {
+  color: inherit
+}
+
+.q-a__stat > span.answered-accepted {
+  background-color: $success;
+  strong {
+    color: $white
+  }
+}

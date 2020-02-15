@@ -17835,7 +17835,7 @@ p#tag-subscriptions {
 }
 
 .ac_loading {
-    background: #FFF url() right center no-repeat
+    background: #FFF url("./") right center no-repeat
 }
 
 .ac_over {

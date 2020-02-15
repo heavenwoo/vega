@@ -13,6 +13,22 @@
       "css": [
         "/assets/styles.css"
       ]
+    },
+    "animate": {
+      "js": [
+        "/assets/runtime.js"
+      ],
+      "css": [
+        "/assets/animate.css"
+      ]
+    },
+    "material-design-iconic-font": {
+      "js": [
+        "/assets/runtime.js"
+      ],
+      "css": [
+        "/assets/material-design-iconic-font.css"
+      ]
     }
   }
 }

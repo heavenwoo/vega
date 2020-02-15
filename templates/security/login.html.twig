@@ -1,35 +1,147 @@
 {% extends 'global/layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('material-design-iconic-font') }}
+    {{ encore_entry_link_tags('animate') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
-    {% include "global/navbar.html.twig" %}
+    <div class="login">
 
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    <div class="container body-container my-4">
-        <div class="card">
-            <div class="card-body">
+        <!-- Login -->
+        <div class="login__block active" id="l-login">
+            <div class="login__block__header">
+                <i class="zmdi zmdi-account-circle"></i>
+                Hi there! Please Sign in
+
+                <div class="actions actions--inverse login__block__actions">
+                    <div class="dropdown">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item" aria-expanded="false"></i>
+
+                        <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                             style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 5px, 0px);"
+                             x-out-of-boundaries="">
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-register" href="">Create
+                                an account</a>
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-forget-password"
+                               href="">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login__block__body">
                 <form action="{{ path('security_login') }}" method="post">
-                    <div class="form-group">
-                        <label for="username">{{ 'security.username' | trans }}</label>
+                    <div class="form-group form-group--float form-group--centered">
                         <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
+                        <label for="username">{{ 'security.username' | trans }}</label>
+                        <i class="form-group__bar"></i>
                     </div>
-                    <div class="form-group">
 
-                        <label for="password">{{ 'security.password' | trans }}</label>
+                    <div class="form-group form-group--float form-group--centered">
                         <input class="form-control" type="password" id="password" name="_password">
+                        <label for="password">{{ 'security.password' | trans }}</label>
+                        <i class="form-group__bar"></i>
                     </div>
-                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-                        {#
-                            If you want to control the URL the security
-                            is redirected to on success (more details below)
-                            <input type="hidden" name="_target_path" value="/account" />
-                        #}
 
-                        <button class="btn btn-primary" type="submit">{{ 'security.login' | trans }}</button>
-                </form>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button type="submit" class="btn btn--icon login__block__btn">
+                        <i class="zmdi zmdi-long-arrow-right"></i>
+                    </button>
+            </div>
+            </form>
+        </div>
+
+        <!-- Register -->
+        <div class="login__block" id="l-register">
+            <div class="login__block__header palette-Blue bg">
+                <i class="zmdi zmdi-account-circle"></i>
+                Create an account
+
+                <div class="actions actions--inverse login__block__actions">
+                    <div class="dropdown">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-login" href="">Already
+                                have an account?</a>
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-forget-password"
+                               href="">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login__block__body">
+                <div class="form-group form-group--float form-group--centered">
+                    <input type="text" class="form-control">
+                    <label>Name</label>
+                    <i class="form-group__bar"></i>
+                </div>
+
+                <div class="form-group form-group--float form-group--centered">
+                    <input type="text" class="form-control">
+                    <label>Email Address</label>
+                    <i class="form-group__bar"></i>
+                </div>
+
+                <div class="form-group form-group--float form-group--centered">
+                    <input type="password" class="form-control">
+                    <label>Password</label>
+                    <i class="form-group__bar"></i>
+                </div>
+
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">Accept the license agreement</span>
+                    </label>
+                </div>
+
+                <button href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-check"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Forgot Password -->
+        <div class="login__block" id="l-forget-password">
+            <div class="login__block__header palette-Purple bg">
+                <i class="zmdi zmdi-account-circle"></i>
+                Forgot Password?
+
+                <div class="actions actions--inverse login__block__actions">
+                    <div class="dropdown">
+                        <i data-toggle="dropdown" class="zmdi zmdi-more-vert actions__item"></i>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-login" href="">Already
+                                have an account?</a>
+                            <a class="dropdown-item" data-ma-action="login-switch" data-ma-target="#l-register" href="">Create
+                                an account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login__block__body">
+                <p class="mt-4">Lorem ipsum dolor fringilla enim feugiat commodo sed ac lacus.</p>
+
+                <div class="form-group form-group--float form-group--centered">
+                    <input type="text" class="form-control">
+                    <label>Email Address</label>
+                    <i class="form-group__bar"></i>
+                </div>
+
+                <button href="index.html" class="btn btn--icon login__block__btn"><i class="zmdi zmdi-check"></i>
+                </button>
             </div>
         </div>
     </div>
-    {% include "global/footer.html.twig" %}
 {% endblock %}

@@ -1,0 +1,41 @@
+
+.page-sizer, .pager {
+  margin: 20px 0
+}
+
+.page-sizer a, .pager a, .page-sizer a:hover, .pager a:hover {
+  text-decoration: none
+}
+
+.page-numbers {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: $gray-600;
+  border: 1px solid $gray-200;
+  border-radius: 2px;
+  background-color: transparent
+}
+
+.page-numbers.desc, .page-numbers.dots, .page-numbers.desc:hover, .page-numbers.dots:hover {
+  color: $gray-600;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none
+}
+
+.page-numbers, .page-numbers:hover {
+  text-decoration: none
+}
+
+.page-numbers:hover {
+  color: #FFF;
+  background-color: theme-color('secondary');
+  border-color: transparent
+}
+
+.page-numbers.current {
+  color: $white;
+  background-color: theme-color('primary');
+  border-color: transparent
+}

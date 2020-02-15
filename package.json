@@ -1,6 +1,7 @@
 {
     "devDependencies": {
         "@symfony/webpack-encore": "^0.28.2",
+        "@types/chartist": "^0.9.47",
         "autoprefixer": "^9.7.3",
         "core-js": "^3.0.0",
         "node-sass": "^4.13.0",
@@ -19,7 +20,10 @@
     },
     "dependencies": {
         "bootstrap": "^4.4.1",
+        "chartist": "^0.11.4",
+        "chartist-plugin-legend": "^0.6.2",
         "jquery": "^3.4.1",
+        "ng-chartist": "^4.1.0",
         "popper.js": "^1.16.0",
         "vue": "^2.6.11",
         "vue-loader": "^15.0.11",

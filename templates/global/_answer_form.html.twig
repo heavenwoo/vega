@@ -5,25 +5,16 @@
             {{ form_widget(form) }}
         #}
 
-<fieldset>
-    <legend>
-        <i class="fa fa-comment" aria-hidden="true"></i> {{ 'form.answer_create' | trans }}
-    </legend>
-
     {# Render any global form error (e.g. when a constraint on a public getter method failed) #}
     {{ form_errors(answerForm) }}
 
-    <div class="form-group {% if not answerForm.content.vars.valid %}has-error{% endif %}">
-        {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
-        {{ form_errors(answerForm.content) }}
-
-        {{ form_widget(answerForm.content, {attr: {rows: 10, class: 'form-control'}}) }}
-    </div>
-
-    <div class="form-group">
-        <button class="btn btn-primary pull-right" type="submit">
-            <i class="fa fa-paper-plane" aria-hidden="true"></i> {{ 'form.publish_answer' | trans }}
-        </button>
-    </div>
-</fieldset>
+    {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
+    {{ form_errors(answerForm.content) }}
+<div class="form-group">
+    {{ form_widget(answerForm.content, {attr: {rows: 5, class: 'form-control', placeholder: 'Type answer here...'}}) }}
+    <i class="form-group__bar"></i>
+</div>
+<button class="btn btn-primary" type="submit">
+    <i class="zmdi zmdi-mail-send" aria-hidden="true"></i> {{ 'form.publish_answer' | trans }}
+</button>
 {{ form_end(answerForm) }}

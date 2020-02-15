@@ -15,14 +15,14 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class PostController
  *
- * @Route("/post")
+ * @Route("/post", name="post_")
  *
  * @package Vega\Controller
  */
 class PostController extends Controller
 {
     /**
-     * @Route("", name="post_list")
+     * @Route("", name="list")
      */
     public function list(Request $request, PostRepository $postRepository, TagRepository $tagRepository, PaginatorInterface $paginator): Response
     {
@@ -43,7 +43,7 @@ class PostController extends Controller
     }
 
     /**
-     * @Route("/show/{id}/{slug}", name="post_show", requirements={"id": "\d+"}, methods={"GET"})
+     * @Route("/show/{id}/{slug}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      *
      * @param int $id
      * @param PostRepository $postRepository

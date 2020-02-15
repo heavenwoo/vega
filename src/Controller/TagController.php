@@ -14,7 +14,7 @@ use Knp\Component\Pager\PaginatorInterface;
 /**
  * Class TagController
  *
- * @Route("/tag")
+ * @Route("/tag", name="tag_")
  *
  * @package Vega\Controller
  */
@@ -22,7 +22,7 @@ class TagController extends Controller
 {
 
     /**
-     * @Route("/", name="tag_index")
+     * @Route("/", name="index")
      */
     public function index()
     {
@@ -30,11 +30,15 @@ class TagController extends Controller
     }
 
     /**
-     * @Route("/{name}", name="tag_list", requirements={"name": "\w+"})
+     * @Route("/{name}", name="list", requirements={"name": "\w+"})
      *
-     * @param Request       $request
-     * @param int           $id
-     * @param TagRepository $tagRepository
+     * @param Request            $request
+     * @param Tag                $tag
+     * @param QuestionRepository $questionRepository
+     * @param TagRepository      $tagRepository
+     * @param PaginatorInterface $paginator
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function list(
         Request $request,
@@ -44,6 +48,11 @@ class TagController extends Controller
         PaginatorInterface $paginator
     ): Response {
         $settings = $this->getParameter('settings');
+
+        $sort = strtolower($request->query->get('sort', null));
+
+        $sort = in_array($sort, ['latest', 'hottest', 'unanswered']) ? $sort
+            : 'latest';
 
         $query = $questionRepository->findQuestionsQueryByTag($tag);
 
@@ -60,25 +69,28 @@ class TagController extends Controller
             [
                 'questions' => $questions,
                 'tags'      => $tags,
+                'tag_name'  => $tag->getName(),
+                'sort'      => $sort,
             ]
         );
     }
 
     /**
-     * @Route("/{name}/post", name="tag_post_list", requirements={"name":
-     *                        "\w+"})
+     * @Route("/{name}/post", name="post_list", requirements={"name": "\w+"})
      *
-     * @param Request        $request
-     * @param Tag            $tag
-     * @param PostRepository $postRepository
-     * @param TagRepository  $tagRepository
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Vega\Entity\Tag                          $tag
+     * @param \Vega\Repository\PostRepository           $postRepository
+     * @param \Vega\Repository\TagRepository            $tagRepository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function posts(
         Request $request,
         Tag $tag,
         PostRepository $postRepository,
         TagRepository $tagRepository
-    ) {
+    ): Response {
         $settings = $this->getParameter('settings');
 
         $query = $postRepository->findPostsQueryByTag($tag);
@@ -96,8 +108,8 @@ class TagController extends Controller
         return $this->render(
             "tag/post_list.html.twig",
             [
-                'posts'   => $posts,
-                'tags'    => $tags,
+                'posts' => $posts,
+                'tags'  => $tags,
             ]
         );
     }

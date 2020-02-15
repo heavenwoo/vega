@@ -3,10 +3,18 @@
 {% extends "global/layout.html.twig" %}
 
 {% block content %}
+    <header class="content__title">
+        <h1>Tag: {{ tag_name }}</h1>
+    </header>
     <div class="card">
-        <div class="card-body">
-            {% include "question/_list.html.twig" %}
+        <div class="toolbar toolbar--inner">
+            <div class="toolbar__label">Total {{ questions.getTotalItemCount }} questions</div>
+
+            <div class="actions">
+                <i class="actions__item zmdi zmdi-search" data-ma-action="toolbar-search-open" data-toggle="tooltip" data-title="Search" data-original-title="" title=""></i>
+            </div>
         </div>
+        {% include "question/_list.html.twig" %}
         {{ knp_pagination_render(questions) }}
     </div>
 {% endblock %}

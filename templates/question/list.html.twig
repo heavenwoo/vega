@@ -1,0 +1,32 @@
+{% set actived = 'question' %}
+
+{% extends "global/layout.html.twig" %}
+
+{% block content %}
+    <header class="content__title">
+        <h1>All questions</h1>
+    </header>
+    <div class="card">
+        <div class="toolbar toolbar--inner">
+            <div class="toolbar__label">Total {{ questions.getTotalItemCount }} questions</div>
+
+            <div class="actions">
+                <i class="actions__item zmdi zmdi-search" data-ma-action="toolbar-search-open" data-toggle="tooltip" data-title="Search" data-original-title="" title=""></i>
+            </div>
+            <ul class="nav nav-pills justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link{% if sort == 'latest' or sort == '' %} active{% endif %}" href="{{ path('question_list', app.request.query|merge({('sort'): 'latest'})) }}">latest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if sort == 'hottest' %} active{% endif %}" href="{{ path('question_list', app.request.query|merge({('sort'): 'hottest'})) }}">hottest</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if sort == 'unanswered' %} active{% endif %}" href="{{ path('question_list', app.request.query|merge({('sort'): 'unanswered'})) }}">unanswered</a>
+                </li>
+            </ul>
+        </div>
+        {% set tag_list = true %}
+        {% include "question/_list.html.twig" with {'tags_list': true} %}
+        {{ knp_pagination_render(questions) }}
+    </div>
+{% endblock %}

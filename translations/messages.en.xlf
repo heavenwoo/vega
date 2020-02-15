@@ -164,7 +164,7 @@
     <unit id="540R2gg">
       <segment>
         <source>admin.dashboard</source>
-        <target>admin.dashboard</target>
+        <target>Dashboard</target>
       </segment>
     </unit>
   </file>
