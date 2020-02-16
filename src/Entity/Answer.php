@@ -32,6 +32,13 @@ class Answer extends Entity
     protected $best;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="vote", type="integer")
+     */
+    protected $vote;
+
+    /**
      * @var User
      *
      * @ORM\ManyToOne(targetEntity="User")
@@ -88,6 +95,22 @@ class Answer extends Entity
     public function setBest(bool $best): void
     {
         $this->best = $best;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVote(): int
+    {
+        return $this->vote;
+    }
+
+    /**
+     * @param int $vote
+     */
+    public function setVote(int $vote): void
+    {
+        $this->vote = $vote;
     }
 
     /**

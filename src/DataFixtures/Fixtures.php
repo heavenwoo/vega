@@ -148,6 +148,7 @@ class Fixtures extends Fixture
 
                 $answer->setContent($this->faker->paragraph(mt_rand(1, 3)));
                 $answer->setBest($isBestId == $i);
+                $answer->setVote(mt_rand(0, 100));
                 $answer->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
                 $answer->setCreatedAt($this->faker->dateTimeBetween($question->getCreatedAt(), 'now'));
 
