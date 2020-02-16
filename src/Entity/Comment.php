@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment extends Entity
 {
+
     /**
      * @var string
      *

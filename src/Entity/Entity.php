@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 abstract class Entity
 {
+
     /**
      * @var int
      *
@@ -44,7 +45,8 @@ abstract class Entity
 
     /**
      * @param string $column
-     * @param int $amount
+     * @param int    $amount
+     *
      * @return bool
      */
     public function increment(string $column, int $amount = 1)
@@ -54,7 +56,8 @@ abstract class Entity
 
     /**
      * @param string $column
-     * @param int $amount
+     * @param int    $amount
+     *
      * @return bool
      */
     public function decrement(string $column, int $amount = 1)
@@ -64,13 +67,14 @@ abstract class Entity
 
     /**
      * @param string $column
-     * @param int $amount
+     * @param int    $amount
      * @param string $method
+     *
      * @return bool
      */
     private function incrementOrDecrement(string $column, int $amount, string $method)
     {
-        $this->{$column} = $this->{$column} + ($method == 'increment' ? $amount : ($amount * - 1));
+        $this->{$column} = $this->{$column} + ($method == 'increment' ? $amount : ($amount * -1));
 
         return true;
     }

@@ -17,6 +17,7 @@ use Doctrine\ORM\Query;
  */
 class Answer extends Entity
 {
+
     /**
      * @var string
      *

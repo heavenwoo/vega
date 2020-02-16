@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Post extends Entity
 {
+
     /**
      * @var string
      *

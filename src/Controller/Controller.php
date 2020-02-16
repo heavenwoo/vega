@@ -15,7 +15,7 @@ class Controller extends BaseController
     public function __construct()
     {
         //dump(realpath(__DIR__ . '/../../'));
-        if (!is_file(dirname(getcwd()) . '/installed.lock')) {
+        if (!is_file(dirname(getcwd()).'/installed.lock')) {
             //dump('uninstalled');
         }
     }
@@ -28,7 +28,7 @@ class Controller extends BaseController
     {
         $settings = $this->getDoctrine()->getRepository(Setting::class)->findAll();
 
-        /* @var Setting $setting*/
+        /* @var Setting $setting */
         foreach ($settings as $setting) {
             $settingArray[$setting->getName()] = $setting->getValue();
         }
@@ -38,7 +38,7 @@ class Controller extends BaseController
 
     /**
      * @param Entity $entity
-     * @param int $amount
+     * @param int    $amount
      */
     protected function incrementView(Entity $entity, int $amount = 1)
     {

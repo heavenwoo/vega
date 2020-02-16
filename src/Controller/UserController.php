@@ -25,21 +25,30 @@ use Vega\Repository\UserRepository;
  */
 class UserController extends Controller
 {
+
     /**
      * @Route("/list", name="user_list")
+     *
+     * @param \Vega\Repository\UserRepository $userRepository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function list(UserRepository $userRepository)
     {
-        return $this->render('user/list.html.twig', [
-            'settings' => $this->getSettings(),
-            'users' => $userRepository->findAll(),
-        ]);
+        return $this->render(
+            'user/list.html.twig',
+            [
+                'settings' => $this->getSettings(),
+                'users'    => $userRepository->findAll(),
+            ]
+        );
     }
 
     /**
      * @Route("/register", name="user_register")
-     * @param Request $request
+     * @param Request        $request
      * @param UserRepository $userRepository
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function register(Request $request, UserRepository $userRepository)
@@ -64,13 +73,23 @@ class UserController extends Controller
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('user/register.html.twig', [
-            'form' => $form,
-        ]);
+        return $this->render(
+            'user/register.html.twig',
+            [
+                'form' => $form,
+            ]
+        );
     }
 
     /**
      * @Route("/{name}", name="user_show")
+     *
+     * @param \Vega\Entity\User                   $user
+     * @param \Vega\Repository\QuestionRepository $questionRepository
+     * @param \Vega\Repository\PostRepository     $postRepository
+     * @param \Vega\Repository\AnswerRepository   $answerRepository
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function show(
         User $user,
@@ -78,17 +97,22 @@ class UserController extends Controller
         PostRepository $postRepository,
         AnswerRepository $answerRepository
     ) {
-        return $this->render('user/show.html.twig', [
-            'settings' => $this->getSettings(),
-            'questions' => $questionRepository->findQuestionsByUser($user),
-            'posts' => $postRepository->findPostsByUser($user),
-            'answers' => $answerRepository->findAnswersByUser($user),
-        ]);
+        return $this->render(
+            'user/show.html.twig',
+            [
+                'settings'  => $this->getSettings(),
+                'questions' => $questionRepository->findQuestionsByUser($user),
+                'posts'     => $postRepository->findPostsByUser($user),
+                'answers'   => $answerRepository->findAnswersByUser($user),
+            ]
+        );
     }
 
     /**
      * @Route("/{name}/edit", name="user_edit")
      * @Security("has_role('ROLE_USER')")
+     *
+     * @param \Vega\Entity\User $user
      */
     public function edit(User $user)
     {
@@ -98,6 +122,11 @@ class UserController extends Controller
     /**
      * @Route("/delete/{username}", name="user_delete", methods={"GET"})
      * Security("is_granted('delete', user)")
+     *
+     * @param \Vega\Entity\User                   $user
+     * @param \Vega\Repository\QuestionRepository $questionRepository
+     * @param \Vega\Repository\AnswerRepository   $answerRepository
+     * @param \Vega\Repository\PostRepository     $postRepository
      */
     public function delete(
         User $user,
@@ -107,15 +136,15 @@ class UserController extends Controller
     ) {
         $em = $this->getDoctrine()->getManager();
 
-//        $questions = $questionRepository->findQuestionsByUser($user);
-//        /** @var Question $question */
-//        foreach ($questions as $question) {
-//            $question->getAnswers()->clear();
-//            $question->getComments()->clear();
-//            $question->getTags()->clear();
-//            dump($question);
-//            $em->remove($question);
-//        }
+        //        $questions = $questionRepository->findQuestionsByUser($user);
+        //        /** @var Question $question */
+        //        foreach ($questions as $question) {
+        //            $question->getAnswers()->clear();
+        //            $question->getComments()->clear();
+        //            $question->getTags()->clear();
+        //            dump($question);
+        //            $em->remove($question);
+        //        }
 
         $answers = $answerRepository->findAnswersByUser($user);
         /** @var Answer $answer */
@@ -124,13 +153,13 @@ class UserController extends Controller
             $em->remove($answer);
         }
 
-//        $posts = $postRepository->findPostsByUser($user);
-//        /** @var Post $post */
-//        foreach ($posts as $post) {
-//            $post->getComments()->clear();
-//            $post->getTags()->clear();
-//            $em->remove($post);
-//        }
+        //        $posts = $postRepository->findPostsByUser($user);
+        //        /** @var Post $post */
+        //        foreach ($posts as $post) {
+        //            $post->getComments()->clear();
+        //            $post->getTags()->clear();
+        //            $em->remove($post);
+        //        }
 
         $em->flush();
     }

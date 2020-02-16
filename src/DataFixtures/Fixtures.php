@@ -18,11 +18,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class Fixtures extends Fixture
 {
+
     const TAG_NUMS = 50;
 
     const USER_NUMS = 100;
 
-    const QUESTION_NUMS = 10000;
+    const QUESTION_NUMS = 1000;
 
     const ANSWER_NUMS = 30;
 
@@ -59,13 +60,16 @@ class Fixtures extends Fixture
 
             do {
                 $tagName = $this->faker->word;
-            } while (in_array($tagName, $name)); //while ($manager->getRepository(Tag::class)->findBy(['name' => $name[$i]]) != null);
+            } while (in_array(
+                $tagName,
+                $name
+            )); //while ($manager->getRepository(Tag::class)->findBy(['name' => $name[$i]]) != null);
 
             $name[$i] = $tagName;
 
             $tag->setName($tagName);
             $tag->setDescription($this->faker->paragraph(mt_rand(3, 5)));
-            $this->addReference('tag-' . $tagName, $tag);
+            $this->addReference('tag-'.$tagName, $tag);
 
             $manager->persist($tag);
         }
@@ -105,7 +109,7 @@ class Fixtures extends Fixture
         $user->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
         $user->setUpdatedAt($user->getCreatedAt());
 
-        $this->setReference('username-' . $i, $user);
+        $this->setReference('username-'.$i, $user);
 
         return $user;
     }
@@ -121,7 +125,7 @@ class Fixtures extends Fixture
             $question->setViews(mt_rand(0, 10000));
             $question->setVote(mt_rand(0, 10000));
             $question->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
-            $question->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
+            $question->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
             $question->addTags(...$this->getRandomTags());
 
             $this->addAnswers($manager, $question);
@@ -149,7 +153,7 @@ class Fixtures extends Fixture
                 $answer->setContent($this->faker->paragraph(mt_rand(1, 3)));
                 $answer->setBest($isBestId == $i);
                 $answer->setVote(mt_rand(0, 100));
-                $answer->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
+                $answer->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
                 $answer->setCreatedAt($this->faker->dateTimeBetween($question->getCreatedAt(), 'now'));
 
                 $this->addComments($manager, $answer);
@@ -173,7 +177,7 @@ class Fixtures extends Fixture
             $post->setContent($this->faker->paragraph(mt_rand(6, 10)));
             $post->setViews(mt_rand(0, 10000));
             $post->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
-            $post->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
+            $post->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
             $post->addTags(...$this->getRandomTags());
 
             $this->addComments($manager, $post);
@@ -191,7 +195,7 @@ class Fixtures extends Fixture
 
             $comment->setContent($this->faker->paragraph(mt_rand(1, 3)));
             $comment->setCreatedAt($this->faker->dateTimeBetween($entity->getCreatedAt(), 'now'));
-            $comment->setUser($this->getReference('username-' . mt_rand(0, self::USER_NUMS)));
+            $comment->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
 
             $entity->addComment($comment);
 
@@ -205,8 +209,11 @@ class Fixtures extends Fixture
         shuffle($tagNames);
         $selectedTags = array_slice($tagNames, 0, mt_rand(2, 5));
 
-        return array_map(function ($tagName) {
-            return $this->getReference('tag-' . $tagName);
-        }, $selectedTags);
+        return array_map(
+            function ($tagName) {
+                return $this->getReference('tag-'.$tagName);
+            },
+            $selectedTags
+        );
     }
 }

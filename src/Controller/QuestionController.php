@@ -159,7 +159,7 @@ class QuestionController extends Controller
             return $this->redirectToRoute(
                 'question_show',
                 [
-                    'id' => $question->getId(),
+                    'id'   => $question->getId(),
                     'slug' => $question->getSlug(),
                 ]
             );

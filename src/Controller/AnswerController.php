@@ -18,11 +18,13 @@ use Vega\Form\AnswerType;
  */
 class AnswerController extends Controller
 {
+
     /**
      * @Route("/create/{id}", requirements={"id": "\d+"}, name="answer_create", methods={"POST"})
      *
-     * @param Request $request
+     * @param Request  $request
      * @param Question $question
+     *
      * @return Response
      */
     public function create(Request $request, Question $question): Response
@@ -44,12 +46,18 @@ class AnswerController extends Controller
 
             $this->addFlash('success', 'answer.created');
 
-            return $this->redirectToRoute('question_show', ['id' => $question->getId(), 'slug' => $question->getSlug()]);
+            return $this->redirectToRoute(
+                'question_show',
+                ['id' => $question->getId(), 'slug' => $question->getSlug()]
+            );
         }
 
-        return $this->render('answer/answer_form_error.html.twig', [
-            'answer' => $answer,
-            'question' => $question,
-        ]);
+        return $this->render(
+            'answer/answer_form_error.html.twig',
+            [
+                'answer'   => $answer,
+                'question' => $question,
+            ]
+        );
     }
 }

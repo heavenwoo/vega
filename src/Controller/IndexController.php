@@ -23,7 +23,8 @@ class IndexController extends Controller
      *
      * @return Response
      */
-    public function index(): Response {
+    public function index(): Response
+    {
         return $this->redirectToRoute('question_list');
     }
 }

@@ -18,11 +18,13 @@ use Vega\Form\CommentType;
  */
 class CommentController extends Controller
 {
+
     /**
      * @Route("/create/{id}", requirements={"id": "\d+"}, name="create", methods={"POST"})
      *
      * @param Request $request
-     * @param Post $post
+     * @param Post    $post
+     *
      * @return Response
      */
     public function create(Request $request, Post $post): Response
@@ -46,9 +48,12 @@ class CommentController extends Controller
             return $this->redirectToRoute('post_show', ['id' => $post->getId(), 'slug' => $post->getSlug()]);
         }
 
-        return $this->render('answer/answer_form_error.html.twig', [
-            'comment' => $comment,
-            'question' => $post,
-        ]);
+        return $this->render(
+            'answer/answer_form_error.html.twig',
+            [
+                'comment'  => $comment,
+                'question' => $post,
+            ]
+        );
     }
 }

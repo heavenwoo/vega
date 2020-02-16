@@ -22,11 +22,16 @@ use Knp\Component\Pager\PaginatorInterface;
  */
 class PostController extends Controller
 {
+
     /**
      * @Route("", name="list")
      */
-    public function list(Request $request, PostRepository $postRepository, TagRepository $tagRepository, PaginatorInterface $paginator): Response
-    {
+    public function list(
+        Request $request,
+        PostRepository $postRepository,
+        TagRepository $tagRepository,
+        PaginatorInterface $paginator
+    ): Response {
         $settings = $this->getParameter('settings');
 
         $posts = $paginator->paginate(
@@ -37,10 +42,13 @@ class PostController extends Controller
 
         $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
 
-        return $this->render("post/list.html.twig", [
-            'posts' => $posts,
-            'tags' => $tags,
-        ]);
+        return $this->render(
+            "post/list.html.twig",
+            [
+                'posts' => $posts,
+                'tags'  => $tags,
+            ]
+        );
     }
 
     /**
@@ -49,14 +57,19 @@ class PostController extends Controller
      * @param int                                       $id
      * @param \Vega\Repository\PostRepository           $postRepository
      * @param \Vega\Repository\TagRepository            $tagRepository
-     * @param \Vega\Repository\AnswerRepository         $answerRepository
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(int $id, PostRepository $postRepository, TagRepository $tagRepository, CommentRepository $commentRepository, Request $request, PaginatorInterface $paginator): Response
-    {
+    public function show(
+        int $id,
+        PostRepository $postRepository,
+        TagRepository $tagRepository,
+        CommentRepository $commentRepository,
+        Request $request,
+        PaginatorInterface $paginator
+    ): Response {
         /** @var Post $post */
         $post = $postRepository->getPostById($id);
 
@@ -77,11 +90,14 @@ class PostController extends Controller
         // views number add 1
         $this->incrementView($post);
 
-        return $this->render("post/show.html.twig", [
-            'post' => $post,
-            'comments' => $comments,
-            'tags' => $tagRepository->findBy([], null, 10),
-            'commentForm' => $commentForm->createView(),
-        ]);
+        return $this->render(
+            "post/show.html.twig",
+            [
+                'post'        => $post,
+                'comments'    => $comments,
+                'tags'        => $tagRepository->findBy([], null, 10),
+                'commentForm' => $commentForm->createView(),
+            ]
+        );
     }
 }
