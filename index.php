@@ -1,7 +1,7 @@
 <?php
 error_reporting(1);
 // 配置
-$secret = 'heaven.vega';
+$secret = 'a61d07e45ddcd892438274995d0cfb17';
 $userAgent = $_SERVER['HTTP_USER_AGENT'];
 $signature = 'sha1=e0ec9317f440f3fd47631852ef585c6b2680e8f8';
 if (substr_count($userAgent, 'GitHub') >= 1) {
