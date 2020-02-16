@@ -102,7 +102,7 @@ class QuestionController extends Controller
         $answers = $paginator->paginate(
             $answerRepository->findAllAnswersQueryByQuestion($question),
             $request->query->getInt('page', 1),
-            10
+            5
         );
 
         $answer = new Answer();

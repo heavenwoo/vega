@@ -5,6 +5,7 @@ namespace Vega\Repository;
 use Doctrine\Persistence\ManagerRegistry;
 use Vega\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Vega\Entity\Post;
 use Vega\Entity\User;
 
 class CommentRepository extends ServiceEntityRepository
@@ -20,6 +21,16 @@ class CommentRepository extends ServiceEntityRepository
             ->where('c.user = :user')->setParameter('user', $user)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findAllCommentsQueryByPost(Post $post)
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c', 'u')
+            ->join('c.user', 'u')
+            ->where('c.post = :post')->setParameter('post', $post)
+            ->orderBy('c.createdAt', 'DESC')
+            ->getQuery();
     }
 
     /*

@@ -1,4 +1,4 @@
-{% set actived = 'question' %}
+{% set actived = 'post' %}
 
 {% extends "global/layout.html.twig" %}
 
@@ -19,33 +19,33 @@
         <div class="text-danger">{{ message }}</div>
     {% endfor %}
     <div class="content__inner q-a">
-        <div class="q-a__question">
-            <div class="q-a__vote hidden-sm-down">
-                <div class="icon-toggle">
-                    <input type="checkbox">
-                    <i class="zmdi zmdi-thumb-up"></i>
-                </div>
+        <div class="q-a__post">
+{#            <div class="q-a__vote hidden-sm-down">#}
+{#                <div class="icon-toggle">#}
+{#                    <input type="checkbox">#}
+{#                    <i class="zmdi zmdi-thumb-up"></i>#}
+{#                </div>#}
 
-                <div class="q-a__vote__votes">{{ question.votes }}</div>
+{#                <div class="q-a__vote__votes">{{ post.votes }}</div>#}
 
-                <div class="icon-toggle">
-                    <input type="checkbox">
-                    <i class="zmdi zmdi-thumb-down"></i>
-                </div>
-            </div>
+{#                <div class="icon-toggle">#}
+{#                    <input type="checkbox">#}
+{#                    <i class="zmdi zmdi-thumb-down"></i>#}
+{#                </div>#}
+{#            </div>#}
 
-            <h2>{{ question.subject }}</h2>
-            <p>{{ question.content | markdown }}</p>
+            <h2>{{ post.subject }}</h2>
+            <p>{{ post.content | markdown }}</p>
 
             <div class="tags mt-3">
-                {% for tag in question.tags %}
+                {% for tag in post.tags %}
                     <a href="{{ path('tag_list', {name: tag.name}) }}">{{ tag.name }}</a>
                 {% endfor %}
             </div>
 
             <div class="q-a__info">
                 <div class="q-a__op">
-                    <span>Asked by <a href="#">{{ question.user }}</a> on <time>{{ question.createdAt | ago }}</time></span>
+                    <span>Posted by <a href="#">{{ post.user }}</a> on <time>{{ post.createdAt | ago }}</time></span>
                 </div>
 
                 <div class="actions hidden-sm-down">
@@ -63,11 +63,11 @@
         </div>
     </div>
 
-    <div class="q-a__question">
+    <div class="q-a__post">
         <div class="content__inner">
             <div class="card">
                 <div class="toolbar toolbar--inner">
-                    <div class="toolbar__label">Total {{ answers.totalItemCount }} Answers</div>
+                    <div class="toolbar__label">Total {{ comments.totalItemCount }} comments</div>
 
                     <nav class="toolbar__nav ml-auto hidden-sm-down">
                         <a href="" class="active">Newest</a>
@@ -77,15 +77,12 @@
                 </div>
 
                 <div class="listview listview--bordered listview--block">
-                    {% for answer in answers %}
-                        {% if answer.best %}
-                            <div class="text-success" title="{{ 'answer.accepted_answer' | trans }}"><i class="fa fa-check"></i></div>
-                        {% endif %}
+                    {% for comment in comments %}
                         <div class="listview__item">
-                            <p>{{ answer.content | markdown }}</p>
+                            <p>{{ comment.content | markdown }}</p>
                             <div class="q-a__info">
                                 <div class="q-a__op">
-                                    <span>Replied by <a href="#">{{ answer.user.username }}</a> <time datetime="{{ answer.createdAt | date('c') }}">{{ answer.createdAt | ago }}</time></span>
+                                    <span>Replied by <a href="#">{{ comment.user.username }}</a> <time datetime="{{ comment.createdAt | date('c') }}">{{ comment.createdAt | ago }}</time></span>
                                 </div>
 
                                 <div class="q-a__vote-answer hidden-sm-down">
@@ -105,14 +102,14 @@
                         </div>
                     {% endfor %}
 
-                    {% do answers.setTemplate('global/pagination_ac.html.twig') %}
-                    {{ knp_pagination_render(answers) }}
+                    {% do comments.setTemplate('global/pagination_ac.html.twig') %}
+                    {{ knp_pagination_render(comments) }}
 
                     <div class="listview__item">
                         {% if app.user is not null %}
-                            {{ include("global/_answer_form.html.twig") }}
+                            {{ include("global/_comment_form.html.twig") }}
                         {% else %}
-                            {{ 'form.answer_create_login_needed' | trans }}
+                            {{ 'form.comment_create_login_needed' | trans }}
                         {% endif %}
                     </div>
                 </div>

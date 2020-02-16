@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Vega\Entity\Comment;
+use Vega\Repository\CommentRepository;
 use Vega\Repository\PostRepository;
 use Vega\Repository\TagRepository;
 use Vega\Entity\Post;
@@ -45,13 +46,16 @@ class PostController extends Controller
     /**
      * @Route("/show/{id}/{slug}", name="show", requirements={"id": "\d+"}, methods={"GET"})
      *
-     * @param int $id
-     * @param PostRepository $postRepository
-     * @param TagRepository $tagRepository
-     * @param Request $request
-     * @return Response
+     * @param int                                       $id
+     * @param \Vega\Repository\PostRepository           $postRepository
+     * @param \Vega\Repository\TagRepository            $tagRepository
+     * @param \Vega\Repository\AnswerRepository         $answerRepository
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Knp\Component\Pager\PaginatorInterface   $paginator
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(int $id, PostRepository $postRepository, TagRepository $tagRepository, Request $request, PaginatorInterface $paginator): Response
+    public function show(int $id, PostRepository $postRepository, TagRepository $tagRepository, CommentRepository $commentRepository, Request $request, PaginatorInterface $paginator): Response
     {
         /** @var Post $post */
         $post = $postRepository->getPostById($id);
@@ -59,6 +63,12 @@ class PostController extends Controller
         if (null == $post) {
             return $this->redirectToRoute('post_index');
         }
+
+        $comments = $paginator->paginate(
+            $commentRepository->findAllCommentsQueryByPost($post),
+            $request->query->getInt('page', 1),
+            5
+        );
 
         $comment = new Comment();
 
@@ -69,6 +79,7 @@ class PostController extends Controller
 
         return $this->render("post/show.html.twig", [
             'post' => $post,
+            'comments' => $comments,
             'tags' => $tagRepository->findBy([], null, 10),
             'commentForm' => $commentForm->createView(),
         ]);

@@ -1,0 +1,20 @@
+{{ form_start(commentForm, {method: 'POST', action: path('comment_create', {'id': post.id})}) }}
+        {#  instead of displaying form fields one by one, you can also display them
+            all with their default options and styles just by calling to this function:
+
+            {{ form_widget(form) }}
+        #}
+
+    {# Render any global form error (e.g. when a constraint on a public getter method failed) #}
+    {{ form_errors(commentForm) }}
+
+    {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
+    {{ form_errors(commentForm.content) }}
+<div class="form-group">
+    {{ form_widget(commentForm.content, {attr: {rows: 5, class: 'form-control', placeholder: 'Type comment here...'}}) }}
+    <i class="form-group__bar"></i>
+</div>
+<button class="btn btn-primary" type="submit">
+    <i class="zmdi zmdi-mail-send" aria-hidden="true"></i> {{ 'form.publish_comment' | trans }}
+</button>
+{{ form_end(commentForm) }}
