@@ -1,12 +1,9 @@
+"use strict";
+
 const $ = require('jquery');
 require('bootstrap');
 require('popper.js');
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-});
-
-"use strict";
 $(window).on("load", function () {
     setTimeout(function () {
         $(".page-loader").fadeOut()
