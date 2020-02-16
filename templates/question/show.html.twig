@@ -1,5 +1,7 @@
 {% set actived = 'question' %}
 
+{% set sort = 'latest' %}
+
 {% extends "global/layout.html.twig" %}
 
 {% block stylesheets %}
@@ -69,11 +71,14 @@
                 <div class="toolbar toolbar--inner">
                     <div class="toolbar__label">Total {{ answers.totalItemCount }} Answers</div>
 
-                    <nav class="toolbar__nav ml-auto hidden-sm-down">
-                        <a href="" class="active">Newest</a>
-                        <a href="">Oldest</a>
-                        <a href="">Active</a>
-                    </nav>
+                    <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link{% if sort == 'latest' or sort == '' %} active{% endif %}" href="{{ path('question_list', app.request.query|merge({('sort'): 'latest'})) }}">latest</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link{% if sort == 'hottest' %} active{% endif %}" href="{{ path('question_list', app.request.query|merge({('sort'): 'hottest'})) }}">hottest</a>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="listview listview--bordered listview--block">
