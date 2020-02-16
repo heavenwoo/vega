@@ -29,12 +29,10 @@ class PostRepository extends ServiceEntityRepository
     public function getPostById(int $id)
     {
         $query = $this->createQueryBuilder('p')
-            ->select('p', 'c', 't', 'u')
+            ->select('p', 't', 'u')
             ->join('p.user', 'u')
-            ->leftJoin('p.comments', 'c')
             ->leftJoin('p.tags', 't')
             ->where('p.id = :id')->setParameter('id', $id)
-            ->orderBy('c.createdAt', 'DESC')
             ->getQuery();
 
         return $query->getOneOrNullResult();
