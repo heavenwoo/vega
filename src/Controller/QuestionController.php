@@ -64,7 +64,6 @@ class QuestionController extends Controller
         );
 
         $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
-        dump($questions);
 
         return $this->render(
             "question/list.html.twig",
