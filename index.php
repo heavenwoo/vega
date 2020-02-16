@@ -1,33 +1,37 @@
 <?php
 error_reporting(1);
-
-// 生产环境web目录
-$web_path = '/data/wwwroot/vega';
-$user = 'www';
-$group = 'www';
-
-//作为接口传输的时候认证的密钥
-$valid_token = 'heaven.vega';
-
-//调用接口被允许的ip地址
-$valid_ip = array('192.168.14.2','192.168.14.1','192.168.14.128');
-$client_ip = $_SERVER['REMOTE_ADDR'];
-
-$fs = fopen('./auto_hook.log', 'a');
-fwrite($fs, 'Request on ['.date("Y-m-d H:i:s").'] from ['.$client_ip.']'.PHP_EOL);
-
-$json_content = file_get_contents('php://input');
-$data = json_decode($json_content, true);
-
-fwrite($fs, 'Data: '.json_encode($data).PHP_EOL);
-fwrite($fs, '======================================================================='.PHP_EOL);
-$fs and fclose($fs);
-
-if (empty($data['token']) || $data['token'] !== $valid_token) {
-    exit('Invalid token request');
+// 配置
+$secret = 'heaven.vega';
+$userAgent = $_SERVER['HTTP_USER_AGENT'];
+$signature = 'sha1=e0ec9317f440f3fd47631852ef585c6b2680e8f8';
+if (substr_count($userAgent, 'GitHub') >= 1) {
+    $signature = $_SERVER['HTTP_X_HUB_SIGNATURE'];
+} elseif (substr_count($userAgent, 'Coding') >= 1) {
+    $signature = $_SERVER['HTTP_X_CODING_SIGNATURE'];
 }
 
-$repo = $data['repository']['name'];
+list($hash_type, $hash_value) = explode('=', $signature, 2);
+$jsonContent = file_get_contents("php://input");
+$checkHash = hash_hmac($hash_type, $jsonContent, $secret); // e0ec9317f440f3fd47631852ef585c6b2680e8f8
 
-$cmd = "cd $web_path && git pull";
-shell_exec($cmd);
+$fs = fopen('./auto_hook.log', 'a');
+$data = json_decode($jsonContent, true);
+fwrite($fs, 'Request on [' . date("Y-m-d H:i:s") . '] from [' . $data['pusher']['name'] . ']' . PHP_EOL);
+fwrite($fs, 'Data: '.json_encode($data).PHP_EOL);
+fwrite($fs, 'Service '.json_encode($_SERVER).PHP_EOL);
+
+// sha1 验证
+if ($checkHash && $checkHash === $hash_value) {
+    fwrite($fs, '认证成功，开始更新 ' . PHP_EOL);
+    $repository = $data['repository']['name'];
+
+    $pwd = getcwd();
+    $command = 'cd .. && cd ' . $repository . ' && git pull';
+    fwrite($fs, 'command '.$command.PHP_EOL);
+
+    if (!empty($repository)) {
+        shell_exec($command);
+        fwrite($fs, $repository . ' 更新完成 ' . PHP_EOL);
+    }
+    $fs and fclose($fs);
+}
