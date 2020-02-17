@@ -192,7 +192,7 @@ class Question extends Entity
      */
     public function isSolved(): bool
     {
-        return $this->solved;
+        return (bool)$this->solved;
     }
 
     /**
@@ -203,17 +203,26 @@ class Question extends Entity
         $this->solved = $solved;
     }
 
-    public function getVotes()
+    /**
+     * @return int
+     */
+    public function getVotes(): int
     {
         return $this->votes;
     }
 
-    public function resetVote()
+    /**
+     * @return void
+     */
+    public function resetVote(): void
     {
         $this->votes = 0;
     }
 
-    public function setVote(int $vote)
+    /**
+     * @param int $vote
+     */
+    public function setVote(int $vote): void
     {
         $this->votes = $vote;
     }
@@ -235,7 +244,7 @@ class Question extends Entity
     }
 
     /**
-     * @return Answer
+     * @return Collection
      */
     public function getAnswers(): Collection
     {
@@ -243,7 +252,7 @@ class Question extends Entity
     }
 
     /**
-     * @param Answer $answers
+     * @param Answer $answer
      */
     public function addAnswer(Answer $answer): void
     {
@@ -251,6 +260,9 @@ class Question extends Entity
         $this->answers->add($answer);
     }
 
+    /**
+     * @param Answer $answer
+     */
     public function removeAnswer(Answer $answer)
     {
         $this->answers->removeElement($answer);
@@ -258,7 +270,7 @@ class Question extends Entity
     }
 
     /**
-     * @return Tag
+     * @return Collection
      */
     public function getTags(): Collection
     {
@@ -291,7 +303,7 @@ class Question extends Entity
     }
 
     /**
-     * @param Comment $comments
+     * @param Comment $comment
      */
     public function addComment(Comment $comment): void
     {
