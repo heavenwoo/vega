@@ -126,7 +126,7 @@ class Fixtures extends Fixture
             $question->setVote(mt_rand(0, 10000));
             $question->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
             $question->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
-            $question->addTags(...$this->getRandomTags());
+            $question->addTag(...$this->getRandomTags());
 
             $this->addAnswers($manager, $question);
 
@@ -178,7 +178,7 @@ class Fixtures extends Fixture
             $post->setViews(mt_rand(0, 10000));
             $post->setCreatedAt($this->faker->dateTimeBetween('-1 year', '-10 days'));
             $post->setUser($this->getReference('username-'.mt_rand(0, self::USER_NUMS)));
-            $post->addTags(...$this->getRandomTags());
+            $post->addTag(...$this->getRandomTags());
 
             $this->addComments($manager, $post);
 

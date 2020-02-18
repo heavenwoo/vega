@@ -152,7 +152,7 @@ class Post extends Entity
     /**
      * @param array $tags
      */
-    public function addTags(Tag ...$tags): void
+    public function addTag(Tag ...$tags): void
     {
         foreach ($tags as $tag) {
             if (!$this->tags->contains($tag)) {

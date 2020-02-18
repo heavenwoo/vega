@@ -8,7 +8,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Vega\Entity\Tag;
 use Vega\Form\DataTransformer\TagArrayToStringTransformer;
 use Vega\Repository\TagRepository;
 
@@ -35,9 +34,9 @@ class TagsInputType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $view ->vars['tags'] = $this->tags->findAll();
+        $view->vars['tags'] = $this->tags->findAll();
     }
 
     /**

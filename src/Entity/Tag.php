@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tags")
  * @ORM\Entity(repositoryClass="Vega\Repository\TagRepository")
  */
-class Tag implements \JsonSerializable
+class Tag
 {
     /**
      * @var int
@@ -35,13 +35,6 @@ class Tag implements \JsonSerializable
      * @ORM\Column(type="text")
      */
     protected $description;
-
-    /**
-     * @var Question[]|ArrayCollection
-     *
-     * @ORM\ManyToMany(targetEntity="Question")
-     */
-    protected $questions;
 
     public function __construct()
     {
@@ -77,7 +70,7 @@ class Tag implements \JsonSerializable
      */
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->description ?: '';
     }
 
     /**
@@ -88,8 +81,8 @@ class Tag implements \JsonSerializable
         $this->description = $description;
     }
 
-    public function jsonSerialize()
+    public function __toString()
     {
-        // TODO: Implement jsonSerialize() method.
+        return $this->name;
     }
 }

@@ -2,9 +2,9 @@
 
 namespace Vega\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Vega\Entity\Answer;
 use Vega\Entity\Comment;
-use Vega\Entity\Entity;
 use Vega\Entity\Question;
 use Vega\Form\AnswerType;
 use Vega\Form\CommentType;
@@ -12,7 +12,6 @@ use Vega\Form\QuestionType;
 use Vega\Repository\AnswerRepository;
 use Vega\Repository\QuestionRepository;
 use Vega\Repository\TagRepository;
-use Vega\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -48,8 +47,6 @@ class QuestionController extends Controller
         TagRepository $tagRepository,
         PaginatorInterface $paginator
     ): Response {
-        $settings = $this->getParameter('settings');
-
         $sort = strtolower($request->query->get('sort', null));
 
         $sort = in_array($sort, ['latest', 'hottest', 'unanswered']) ? $sort
@@ -60,10 +57,10 @@ class QuestionController extends Controller
         $questions = $paginator->paginate(
             $questionRepository->$queryName(),
             $request->query->getInt('page', 1),
-            $request->query->getInt('pagesize', $settings['question_nums'])
+            $request->query->getInt('pagesize', $this->getParameter('vega.list.pagesize'))
         );
 
-        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $this->getParameter('vega.tag.nums'));
 
         return $this->render(
             "question/list.html.twig",
@@ -125,14 +122,14 @@ class QuestionController extends Controller
     }
 
     /**
-     * @Route("/create", name="create", methods={"GET", "POST"})
+     * @Route("/create", name="create", methods="GET|POST")
      *
      * @param Request $request
      *
      * @return Response
      * @throws \Exception
      *
-     * @Security("has_role('ROLE_USER')")
+     * @IsGranted("ROLE_USER")
      */
     public function create(Request $request): Response
     {
@@ -176,7 +173,7 @@ class QuestionController extends Controller
 
     /**
      * @Route("/edit/{id}", name="edit", requirements={"id": "\d+"},
-     *                      methods={"GET", "POST"})
+     *                      methods="GET|POST")
      *
      * @param Request  $request
      * @param Question $question
@@ -213,8 +210,7 @@ class QuestionController extends Controller
     /**
      * @Route("/delete/{id}", name="delete", requirements={"id":
      *                        "\d+"}, methods={"GET"})
-     * @Security("has_role('ROLE_USER')")
-     * Security("is_granted('delete', question)")
+     * @IsGranted("ROLE_USER")
      *
      * @param Question $question
      *

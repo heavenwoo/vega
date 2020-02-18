@@ -47,8 +47,6 @@ class TagController extends Controller
         TagRepository $tagRepository,
         PaginatorInterface $paginator
     ): Response {
-        $settings = $this->getParameter('settings');
-
         $sort = strtolower($request->query->get('sort', null));
 
         $sort = in_array($sort, ['latest', 'hottest', 'unanswered']) ? $sort
@@ -62,7 +60,7 @@ class TagController extends Controller
             20
         );
 
-        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $this->getParameter('vega.tag.nums'));
 
         return $this->render(
             "tag/list.html.twig",
@@ -91,8 +89,6 @@ class TagController extends Controller
         PostRepository $postRepository,
         TagRepository $tagRepository
     ): Response {
-        $settings = $this->getParameter('settings');
-
         $query = $postRepository->findPostsQueryByTag($tag);
 
         $paginator = $this->get('knp_paginator');
@@ -103,7 +99,7 @@ class TagController extends Controller
             20
         );
 
-        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $this->getParameter('vega.tag.nums'));
 
         return $this->render(
             "tag/post_list.html.twig",

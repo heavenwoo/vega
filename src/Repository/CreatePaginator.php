@@ -14,6 +14,7 @@ trait CreatePaginator
      * @param int                        $pageSize
      *
      * @return array
+     * @throws \Exception
      */
     private function createPaginator(
         QueryBuilder $queryBuilder,

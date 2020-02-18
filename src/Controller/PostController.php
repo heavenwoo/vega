@@ -32,15 +32,13 @@ class PostController extends Controller
         TagRepository $tagRepository,
         PaginatorInterface $paginator
     ): Response {
-        $settings = $this->getParameter('settings');
-
         $posts = $paginator->paginate(
             $postRepository->findPostsListQuery(),
             $request->query->getInt('page', 1),
             20
         );
 
-        $tags = $tagRepository->findBy([], null, $settings['tag_nums']);
+        $tags = $tagRepository->findBy([], null, $this->getParameter('vega.tag.nums'));
 
         return $this->render(
             "post/list.html.twig",
@@ -57,6 +55,7 @@ class PostController extends Controller
      * @param int                                       $id
      * @param \Vega\Repository\PostRepository           $postRepository
      * @param \Vega\Repository\TagRepository            $tagRepository
+     * @param CommentRepository                         $commentRepository
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @param \Knp\Component\Pager\PaginatorInterface   $paginator
      *

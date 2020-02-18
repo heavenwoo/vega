@@ -38,7 +38,6 @@ class UserController extends Controller
         return $this->render(
             'user/list.html.twig',
             [
-                'settings' => $this->getSettings(),
                 'users'    => $userRepository->findAll(),
             ]
         );
@@ -100,7 +99,6 @@ class UserController extends Controller
         return $this->render(
             'user/show.html.twig',
             [
-                'settings'  => $this->getSettings(),
                 'questions' => $questionRepository->findQuestionsByUser($user),
                 'posts'     => $postRepository->findPostsByUser($user),
                 'answers'   => $answerRepository->findAnswersByUser($user),

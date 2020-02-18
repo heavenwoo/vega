@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="Vega\Repository\UserRepository")
  */
-class User extends Entity implements UserInterface, \Serializable
+class User extends Entity implements UserInterface
 {
     /**
      * @var string
@@ -106,7 +106,7 @@ class User extends Entity implements UserInterface, \Serializable
     }
 
     /**
-     * @param bool $enables
+     * @param bool $enable
      */
     public function setEnabled(bool $enable): void
     {
@@ -145,23 +145,6 @@ class User extends Entity implements UserInterface, \Serializable
      * {@inheritdoc}
      */
     public function eraseCredentials()
-    {
-        return serialize([$this->id, $this->username, $this->password]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function unserialize($serialized): void
-    {
-        // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize()
     {
         return serialize([$this->id, $this->username, $this->password]);
     }

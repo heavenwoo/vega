@@ -2,6 +2,8 @@ parameters:
   settings:
     question_nums: 15
     tag_nums: 20
+  vega.list.pagesize: 15
+  vega.tag.nums: 20
 
 twig:
   globals:

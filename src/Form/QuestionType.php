@@ -21,14 +21,16 @@ class QuestionType extends AbstractType
                 'label' => 'label.subject'
             ])
             ->add('content', TextareaType::class, [
-                'attr' => [],
+                'attr' => ['rows' => 10],
                 'label' => 'label.content'
             ])
             ->add('tags', TagsInputType::class, [
-                'mapped' => false,
-                'label' => 'label.tags'
+                'label' => 'label.tags',
+                'required' => true,
             ])
-            ->add('label.submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'label.submit'
+            ])
         ;
     }
 

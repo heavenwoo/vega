@@ -4,7 +4,6 @@ namespace Vega\Repository;
 
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
-use Vega\Entity\Comment;
 use Vega\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -19,7 +18,8 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return QueryBuilder
+     * @return \Doctrine\ORM\QueryBuilder
+     * @throws \Exception
      */
     private function getQuestionQueryBuilder(): QueryBuilder
     {
@@ -34,11 +34,19 @@ class QuestionRepository extends ServiceEntityRepository
             );
     }
 
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     * @throws \Exception
+     */
     public function findAllQuestions()
     {
         return $this->getQuestionQueryBuilder();
     }
 
+    /**
+     * @return \Doctrine\ORM\Query
+     * @throws \Exception
+     */
     public function findLatestQuery(): Query
     {
         return $this->getQuestionQueryBuilder()
@@ -48,6 +56,10 @@ class QuestionRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    /**
+     * @return \Doctrine\ORM\Query
+     * @throws \Exception
+     */
     public function findHottestQuery(): Query
     {
         return $this->getQuestionQueryBuilder()
@@ -56,6 +68,10 @@ class QuestionRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    /**
+     * @return \Doctrine\ORM\Query
+     * @throws \Exception
+     */
     public function findUnansweredQuery(): Query
     {
         return $this->getQuestionQueryBuilder()
@@ -66,7 +82,8 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Query
+     * @return \Doctrine\ORM\Query
+     * @throws \Exception
      */
     public function getListQuery(): Query
     {
@@ -94,6 +111,12 @@ class QuestionRepository extends ServiceEntityRepository
         return $query->getOneOrNullResult();
     }
 
+    /**
+     * @param \Vega\Entity\Tag $tag
+     *
+     * @return \Doctrine\ORM\Query
+     * @throws \Exception
+     */
     public function findQuestionsQueryByTag(Tag $tag)
     {
         return $this->getQuestionQueryBuilder()
@@ -102,6 +125,11 @@ class QuestionRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    /**
+     * @param \Vega\Entity\User $user
+     *
+     * @return mixed
+     */
     public function findQuestionsByUser(User $user)
     {
         return $this->createQueryBuilder('q')
