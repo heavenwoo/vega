@@ -73,6 +73,12 @@
         <target>Login</target>
       </segment>
     </unit>
+    <unit id="security.logout">
+      <segment>
+        <source>security.logout</source>
+        <target>Logout</target>
+      </segment>
+    </unit>
     <unit id="UIhqdqx">
       <notes>
         <note category="file-source" priority="1">src/Controller/QuestionController.php:109</note>

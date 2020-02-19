@@ -81,6 +81,7 @@ $yiq-text-dark: #525a62;
 
 // Typography
 $font-family-sans-serif: 'Roboto', sans-serif;
+$font-family-monospace: Monaco, Menlo, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $text-muted: #9c9c9c;
 $text-muted-hover: darken($text-muted, 15%);
 $headings-color: #333;

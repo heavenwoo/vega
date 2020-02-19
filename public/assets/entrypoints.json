@@ -2,32 +2,32 @@
   "entrypoints": {
     "scripts": {
       "js": [
-        "/assets/runtime.js",
-        "/assets/scripts.js"
+        "/assets/runtime.3b63985a.js",
+        "/assets/scripts.e7c5f99d.js"
       ]
     },
     "styles": {
       "js": [
-        "/assets/runtime.js"
+        "/assets/runtime.3b63985a.js"
       ],
       "css": [
-        "/assets/styles.css"
+        "/assets/styles.02a05045.css"
       ]
     },
     "animate": {
       "js": [
-        "/assets/runtime.js"
+        "/assets/runtime.3b63985a.js"
       ],
       "css": [
-        "/assets/animate.css"
+        "/assets/animate.a1fafc93.css"
       ]
     },
     "material-design-iconic-font": {
       "js": [
-        "/assets/runtime.js"
+        "/assets/runtime.3b63985a.js"
       ],
       "css": [
-        "/assets/material-design-iconic-font.css"
+        "/assets/material-design-iconic-font.435039f9.css"
       ]
     }
   }

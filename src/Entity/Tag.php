@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tags")
  * @ORM\Entity(repositoryClass="Vega\Repository\TagRepository")
  */
-class Tag
+class Tag implements \JsonSerializable
 {
     /**
      * @var int
@@ -79,6 +79,18 @@ class Tag
     public function setDescription(string $description): void
     {
         $this->description = $description;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize(): string
+    {
+        // This entity implements JsonSerializable (http://php.net/manual/en/class.jsonserializable.php)
+        // so this method is used to customize its JSON representation when json_encode()
+        // is called, for example in tags|json_encode (templates/form/fields.html.twig)
+
+        return $this->name;
     }
 
     public function __toString()

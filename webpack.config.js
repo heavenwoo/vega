@@ -6,6 +6,10 @@ Encore
     // the public path used by the web server to access the previous directory
     .setPublicPath('/assets/')
     .cleanupOutputBeforeBuild()
+    .autoProvideVariables({
+        "window.Bloodhound": require.resolve('bloodhound-js'),
+        "jQuery.tagsinput": "bootstrap-tagsinput"
+    })
     .enableSourceMaps(!Encore.isProduction())
     // uncomment to create hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())

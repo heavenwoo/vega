@@ -2,21 +2,16 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.tags-select').select2();
-        });
-    </script>
 {% endblock %}
 
 {% block body %}
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.subject) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.tags) }}
     {{ form_end(form) }}
 {% endblock %}

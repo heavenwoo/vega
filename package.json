@@ -19,12 +19,17 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "bloodhound-js": "^1.2.3",
         "bootstrap": "^4.4.1",
+        "bootstrap-tagsinput": "^0.7.1",
         "chartist": "^0.11.4",
         "chartist-plugin-legend": "^0.6.2",
+        "highlight.js": "^9.18.1",
         "jquery": "^3.4.1",
         "ng-chartist": "^4.1.0",
         "popper.js": "^1.16.0",
+        "typeahead.js": "^0.11.1",
+        "typehead": "^0.0.1",
         "vue": "^2.6.11",
         "vue-loader": "^15.0.11",
         "vue-template-compiler": "^2.6.11"

@@ -2,10 +2,8 @@
 @import "scss/variables";
 @import "scss/mixins";
 
-
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
-
 
 // Site Styles
 @import "scss/fonts";
@@ -62,3 +60,5 @@
 
 @import "scss/qa";
 @import "scss/pagination";
+
+@import "bootstrap-tagsinput";
